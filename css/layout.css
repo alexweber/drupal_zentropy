@@ -1,0 +1,79 @@
+/* $Id$ */
+/* Main Zentropy Layout Styles  */
+
+.ahem,
+#skip-link {
+  display: none;
+}
+
+/* uncomment these color rules to make the layout easier to see */
+#main { background: #ccc; }
+#content { background: #ccf; }
+.sidebar-first #content .section { background: #eee; }
+#sidebar-first { background: #ccf; }
+#sidebar-second { background: #fcc; }
+#main-menu { background: #ffc; }
+#secondary-menu { background: #fcf; }
+#header { background: #cff; }
+#footer { background: #cfc; }
+
+/* Holy Grail Layout ---------------------------------------------------------
+   ref: http://www.alistapart.com/articles/holygrail
+   This layout takes advantage of negative margins to float the sidebars to
+   either side of the main content. It also floats the navigation above the
+   content, but you could just as easily absolutely position it.
+   
+   LC stands for Left Column, RC for Right Column
+   
+   Obvously, this layout is for left-to-right languages. For a
+   right-to-left layout, just swap all the left and rights below.
+   */
+#page {
+  width: 960px;
+  margin: 0 auto;
+}
+
+#content,
+#navigation,
+#sidebar-first,
+#sidebar-second {
+  float: left;
+}
+
+#navigation {
+  width: 100%;
+  margin-right: -100%;
+}
+
+#navigation h2 {
+  margin: 0;
+}
+
+#content {
+  width: 100%;
+  margin-right: -100%;
+}
+
+.sidebar-first #content .section {
+  margin-left: 200px;   /* LC width */
+}
+
+.sidebar-second #content .section {
+  padding-right: 160px;  /* RC width */
+}
+
+.two-sidebars #content .section {
+  padding-left: 200px;   /* LC width */
+  padding-right: 160px;  /* RC width */
+}
+
+#sidebar-first {
+  width: 200px;          /* LC width */
+  margin-right: -200px;
+}
+
+#sidebar-second {
+  float: right;
+  width: 160px;          /* RC width */
+  margin-left: -160px;   /* RC width */
+}

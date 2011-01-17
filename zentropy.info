@@ -1,0 +1,60 @@
+; $Id$
+
+; Theme Info -----------------------------------------------------------------
+; required information about the theme
+
+name = Zentropy
+description = Zentropy is a highly-optimized and extensible base HTML5 theme for Drupal 7.
+screenshot = screenshot.jpg
+core = 7.x
+engine = phptemplate
+
+; Stylesheets  ---------------------------------------------------------------
+; We use [screen] instead of [all] to avoid browser styles affecting 
+; other media types. IE stylesheets are loaded through template.php
+
+stylesheets[screen][] = css/boilerplate.css
+stylesheets[screen][] = css/layout.css
+stylesheets[screen][] = css/style.css
+
+scripts[] = js/zentropy.core.js
+
+; Regions --------------------------------------------------------------------
+; these content regions are available for block placement
+; some are special hidden regions: page_top, page_bottom, and help
+
+; these are the stock regions
+regions[header] = Header
+regions[help] = Help
+regions[page_top] = Page top
+regions[page_bottom] = Page bottom
+regions[highlighted] = Highlighted
+
+regions[featured] = Featured
+regions[content_top] = Content top
+regions[content] = Content
+regions[content_bottom] = Content bottom
+
+regions[sidebar_first] = Sidebar first
+regions[sidebar_second] = Sidebar second
+
+regions[triptych_first] = Triptych first
+regions[triptych_middle] = Triptych middle
+regions[triptych_last] = Triptych last
+
+regions[footer_firstcolumn] = Footer first column
+regions[footer_secondcolumn] = Footer second column
+regions[footer_thirdcolumn] = Footer third column
+regions[footer_fourthcolumn] = Footer fourth column
+regions[footer] = Footer
+
+; Options --------------------------------------------------------------------
+; these are the checkboxes that are available on the theme settings page.
+
+; additional theme settings
+settings[breadcrumb_display]   = yes
+settings[breadcrumb_separator] = ' › '
+settings[breadcrumb_home]      = 1
+settings[breadcrumb_trailing]  = 0
+settings[breadcrumb_title]     = 0
+settings[shortcut_module_link] = 0
