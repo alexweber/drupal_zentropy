@@ -72,6 +72,9 @@ USEFUL INFORMATION
    stylesheet includes. In order to apply a style for ie6 for example:
    
    - html.ie6 #selector { ... }
+   - htm.ie7.ie6 #selector { ... }
+
+ * Please file issues in the project's issue queue: http://drupal.org/project/zentropy
 
 DEVELOPERS
 
