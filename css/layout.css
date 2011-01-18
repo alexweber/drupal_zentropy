@@ -8,8 +8,7 @@
 
 /* uncomment these color rules to make the layout easier to see */
 #main { background: #ccc; }
-#content { background: #ccf; }
-.sidebar-first #content .section { background: #eee; }
+#content { background: #eee; }
 #sidebar-first { background: #ccf; }
 #sidebar-second { background: #fcc; }
 #main-menu { background: #ffc; }
@@ -55,7 +54,7 @@
 }
 
 .sidebar-first #content .section {
-  margin-left: 200px;   /* LC width */
+  padding-left: 200px;   /* LC width */
 }
 
 .sidebar-second #content .section {

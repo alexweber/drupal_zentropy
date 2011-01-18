@@ -53,18 +53,19 @@ INSTALLATION
  * Install Modernizr:
   - Download from: http://www.modernizr.com/
   - Copy to: /path/to/theme/js/libs/modernizr-1.6.min.js
-  - Uncomment line 66 in html.tpl.php
+  - Uncomment line 75 in html.tpl.php
  
+ * If you are not using Modernizr or are using a custom download without the HTML5 Shim:
  * To support HTML5 in Internet Explorer and other legacy browsers please install HTML5Shim:
   - Download from: http://code.google.com/p/html5shim/
   - Copy to: /path/to/theme/js/libs/html5.js
-  - Uncomment line 55 in html.tpl.php
+  - Uncomment line 66 in html.tpl.php
  
  * To support transparent PNGs in IE6 and below please install DDBelatedPNG:
   - Download from: http://www.dillerdesign.com/experiment/DD_belatedPNG/
   - Copy to: /path/to/theme/js/libs/dd_belatedpng.js
   - Add the class "png_bg" to any elements which have a PNG background
-  - Uncomment lines 80 and 81 in html.tpl.php
+  - Uncomment lines 89 and 90 in html.tpl.php
 
 USEFUL INFORMATION
 

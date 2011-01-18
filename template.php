@@ -78,8 +78,14 @@ function zentropy_preprocess_html(&$vars) {
 	if (!$vars['is_front']) {
 		// Add unique classes for each page and website section
 		$path = drupal_get_path_alias($_GET['q']);
-		list($section, $page_name) = explode('/', $path, 2);
-		$vars['classes_array'][] = zentropy_id_safe('page-'. $page_name);
+		$temp = explode('/', $path, 2);
+		$section = array_shift($temp);
+		$page_name = array_shift($temp);
+		
+		if (isset($page_name)) {
+		  $vars['classes_array'][] = zentropy_id_safe('page-'. $page_name);
+		}
+		
 		$vars['classes_array'][] = zentropy_id_safe('section-'. $section);
 		
 		// add template suggestions

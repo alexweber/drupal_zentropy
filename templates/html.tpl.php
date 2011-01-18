@@ -58,10 +58,14 @@
   
   <title><?php print $head_title; ?></title>
   <?php print $styles; ?>
-  <!-- IMPORTANT: Install html5shiv to enable full HTML5 support. See README.txt -->
+  <?php /*
+  ### IMPORTANT: If you are NOT using Modernizr OR are using a custom version without the HTML5 Shim,
+      you should install it manually and uncomment line 66 ###
+  <!-- Install html5shiv to enable full HTML5 support. See README.txt -->
   <!--[if LT IE 9]>
   <!--<script src="js/libs/html5.js"></script>
   <![endif]-->
+  */ ?>
 
   <!-- Uncomment if you are specifically targeting less enabled mobile browsers
   <link rel="stylesheet" media="handheld" href="css/handheld.css">  -->
@@ -80,7 +84,7 @@
   <!-- Javascript at the bottom for fast page loading -->
   <?php print $scripts; ?>
   
-  <!-- Uncomment lines 80 and 81 to support transparent PNGs in IE6 and below -->
+  <!-- Uncomment lines 89 and 90 to support transparent PNGs in IE6 and below -->
   <!--[if lt IE 7 ]>
     <!--<script src="js/libs/dd_belatedpng.js"></script>
     <!--<script> DD_belatedPNG.fix('img, .png_bg'); //fix any <img> or .png_bg background-images </script>
