@@ -1,5 +1,7 @@
 Place 3rd-party javascript files here!
 
+*** PLEASE READ the README.txt in the theme's root before adding any external scripts! ***
+
 * Modernizr
   - Download from: http://www.modernizr.com/
   - Put "modernizr-1.6.min.js" here

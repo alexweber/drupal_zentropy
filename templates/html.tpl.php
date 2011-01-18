@@ -70,9 +70,11 @@
   <!-- Uncomment if you are specifically targeting less enabled mobile browsers
   <link rel="stylesheet" media="handheld" href="css/handheld.css">  -->
 
+  <?php if (!module_exists('modernizr')): ?>
   <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
   <!-- IMPORTANT: Uncomment the following line and install Modernizr to enable full HTML5 support. See README.txt -->
   <!--<script src="js/libs/modernizr-1.6.min.js"></script>-->
+  <?php endif;?>
 
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
@@ -84,7 +86,7 @@
   <!-- Javascript at the bottom for fast page loading -->
   <?php print $scripts; ?>
   
-  <!-- Uncomment lines 89 and 90 to support transparent PNGs in IE6 and below -->
+  <!-- Uncomment lines 91 and 92 to support transparent PNGs in IE6 and below -->
   <!--[if lt IE 7 ]>
     <!--<script src="js/libs/dd_belatedpng.js"></script>
     <!--<script> DD_belatedPNG.fix('img, .png_bg'); //fix any <img> or .png_bg background-images </script>
