@@ -29,7 +29,7 @@ function zentropy_preprocess_search_block_form(&$vars) {
  */
 function zentropy_preprocess_html(&$vars) {
   if (module_exists('rdf')) {
-    $vars['doctype'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML+RDFa 1.1//EN">' . "\n" . '"http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd"';
+    $vars['doctype'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML+RDFa 1.1//EN"' . "\n" . '"http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">';
     $vars['rdf']->version = 'version="HTML+RDFa 1.1"';
     $vars['rdf']->namespaces = $vars['rdf_namespaces'];
     $vars['rdf']->profile = ' profile="' . $vars['grddl_profile'] . '"';
