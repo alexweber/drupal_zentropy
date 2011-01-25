@@ -53,9 +53,11 @@ function zentropy_form_system_theme_settings_alter(&$form, &$form_state) {
 
   /**
    * Google Analytics settings
-   * TODO add tracking per role options
-   * TODO add descriptions to fields
    */
+
+  $roles_all = user_roles();
+  $roles_tracked = theme_get_setting('ga_trackroles');
+
   $form['ga'] = array(
    '#type' => 'fieldset',
    '#title' => t('Google Analytics'),
@@ -69,5 +71,12 @@ function zentropy_form_system_theme_settings_alter(&$form, &$form_state) {
    '#type'  => 'textfield',
    '#title' => t('Tracking code'),
    '#default_value' => theme_get_setting('ga_trackingcode'),
+  );
+  $form['ga']['ga_trackroles'] = array(
+    '#type' => 'checkboxes',
+    '#title' => t('Track roles'),
+    '#options' => $roles_all,
+    '#description' => t('Exclude the following roles from being tracked'),
+    '#default_value' => !empty($roles_tracked) ? array_values((array) $roles_tracked) : array(),
   );
 }

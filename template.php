@@ -321,3 +321,30 @@ function zentropy_id_safe($string) {
   }
   return $string;
 }
+
+/**
+ * Determine whether to output Google Analytics tracking code
+ *
+ * @return bool
+ */
+function zentropy_ga_enabled(){ 
+  if (!theme_get_setting('ga_enable')) {
+    return false;
+  }
+  
+  global $user;
+  $roles_orig = theme_get_setting('ga_trackroles');
+  
+  // theme_get_setting() doesn't allow specifying default values so provide one here
+  if (!is_array($roles_orig)) {
+    $roles_orig = array();
+  }
+  
+  // remove roles with permission
+  $roles = array_filter($roles_orig);
+  
+  // get intersection of user's roles and roles without permission
+  $intersect = array_intersect(array_keys($user->roles), array_keys($roles));
+  
+  return empty($intersect);
+}

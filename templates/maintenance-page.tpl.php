@@ -123,7 +123,7 @@
     <!--<script> DD_belatedPNG.fix('img, .png_bg'); //fix any <img> or .png_bg background-images </script>
   <![endif]-->
   
-  <?php if (!user_is_logged_in() && theme_get_setting('ga_enable')) :?>
+  <?php if (zentropy_ga_enabled()) :?>
   <!-- Google Analytics : mathiasbynens.be/notes/async-analytics-snippet -->
   <script type="text/javascript">
     <!--//--><![CDATA[//><!--
