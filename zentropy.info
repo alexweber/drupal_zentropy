@@ -4,10 +4,9 @@
 ; required information about the theme
 
 name = Zentropy
-description = Zentropy is a highly-optimized and extensible base HTML5 theme for Drupal 7.
+description = Zentropy is a highly-optimized and extensible base HTML5 theme
 screenshot = screenshot.jpg
 core = 7.x
-engine = phptemplate
 
 ; Stylesheets  ---------------------------------------------------------------
 ; We use [screen] instead of [all] to avoid browser styles affecting 
