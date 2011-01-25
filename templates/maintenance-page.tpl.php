@@ -12,7 +12,7 @@
  * @see bartik_process_maintenance_page()
  */
 ?><?php print $doctype; ?>
-<?php $html_tag_attrs = "lang=\"{$language->language}\" dir=\"{$language->dir}\" {$rdf->version}{$rdf->namespaces}";?>
+<?php $html_tag_attrs = "xml:lang=\"{$language->language}\" dir=\"{$language->dir}\" {$rdf->version}{$rdf->namespaces}";?>
 <!-- If you don't care about older browsers remove the following declarations -->
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
 <!--[if lt IE 7 ]> <html <?php echo $html_tag_attrs;?> class="no-js ie6" <![endif]-->

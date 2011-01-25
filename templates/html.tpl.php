@@ -34,14 +34,14 @@
  * @see template_process()
  */
 ?><?php print $doctype; ?>
-<?php $html_tag_attrs = "lang=\"{$language->language}\" dir=\"{$language->dir}\" {$rdf->version}{$rdf->namespaces}";?>
+<?php $html_tag_attrs = "xml:lang=\"{$language->language}\" dir=\"{$language->dir}\" {$rdf->version}{$rdf->namespaces}";?>
 <!-- If you don't care about older browsers remove the following declarations -->
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7 ]> <html <?php echo $html_tag_attrs;?> class="no-js ie6" <![endif]-->
-<!--[if IE 7 ]> <html <?php echo $html_tag_attrs;?> class="no-js ie7" <![endif]-->
-<!--[if IE 8 ]> <html <?php echo $html_tag_attrs;?> class="no-js ie8" <![endif]-->
-<!--[if IE 9 ]> <html <?php echo $html_tag_attrs;?> class="no-js ie9" <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html <?php echo $html_tag_attrs;?> class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7 ]> <html <?php print $html_tag_attrs;?> class="no-js ie6" <![endif]-->
+<!--[if IE 7 ]> <html <?php print $html_tag_attrs;?> class="no-js ie7" <![endif]-->
+<!--[if IE 8 ]> <html <?php print $html_tag_attrs;?> class="no-js ie8" <![endif]-->
+<!--[if IE 9 ]> <html <?php print $html_tag_attrs;?> class="no-js ie9" <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html <?php print $html_tag_attrs;?> class="no-js"> <!--<![endif]-->
 
 <head<?php print $rdf->profile; ?>>
 
@@ -63,17 +63,17 @@
       you should install it manually and uncomment line 66 ###
   <!-- Install html5shiv to enable full HTML5 support. See README.txt -->
   <!--[if LT IE 9]>
-  <!--<script src="<?php echo $zentropy_path;?>/js/libs/html5.js"></script>
+  <!--<script src="<?php print $zentropy_path;?>/js/libs/html5.js"></script>
   <![endif]-->
   */ ?>
 
   <!-- Uncomment if you are specifically targeting less enabled mobile browsers
-  <link rel="stylesheet" media="handheld" href="<?php echo $zentropy_path;?>/css/handheld.css">  -->
+  <link rel="stylesheet" media="handheld" href="<?php print $zentropy_path;?>/css/handheld.css">  -->
 
   <?php if (!module_exists('modernizr')): ?>
   <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
   <!-- IMPORTANT: Uncomment the following line and install Modernizr to enable full HTML5 support. See README.txt -->
-  <!--<script src="<?php echo $zentropy_path;?>/js/libs/modernizr-1.6.min.js"></script>-->
+  <!--<script src="<?php print $zentropy_path;?>/js/libs/modernizr-1.6.min.js"></script>-->
   <?php endif;?>
 
 </head>
@@ -88,7 +88,7 @@
   
   <!-- Uncomment lines 91 and 92 to support transparent PNGs in IE6 and below -->
   <!--[if lt IE 7 ]>
-    <!--<script src="<?php echo $zentropy_path;?>/js/libs/dd_belatedpng.js"></script>
+    <!--<script src="<?php print $zentropy_path;?>/js/libs/dd_belatedpng.js"></script>
     <!--<script> DD_belatedPNG.fix('img, .png_bg'); //fix any <img> or .png_bg background-images </script>
   <![endif]-->
   
@@ -96,7 +96,7 @@
   <!-- Google Analytics : mathiasbynens.be/notes/async-analytics-snippet -->
   <script type="text/javascript">
     <!--//--><![CDATA[//><!--
-    var _gaq=[['_setAccount','<?php echo theme_get_setting('ga_trackingcode');?>'],['_trackPageview']];
+    var _gaq=[['_setAccount','<?php print theme_get_setting('ga_trackingcode');?>'],['_trackPageview']];
     (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
     g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
     s.parentNode.insertBefore(g,s)}(document,'script'));
