@@ -41,21 +41,17 @@
       you should install it manually and uncomment line 44 ###
   <!-- Install html5shiv to enable full HTML5 support. See README.txt -->
   <!--[if LT IE 9]>
-  <!--<script src="js/libs/html5.js"></script>
+  <!--<script src="<?php echo $zentropy_path;?>/js/libs/html5.js"></script>
   <![endif]-->
   */ ?>
-  
-  <!--[if LTE IE 8]><style type="text/css" media="all">@import "<?php echo base_path() . path_to_theme() ?>/css/ie.css";?></style><![endif]-->
-  <!--[if LTE IE 7]><style type="text/css" media="all">@import "<?php echo base_path() . path_to_theme() ?>/css/ie7.css";?></style><![endif]-->
-  <!--[if LTE IE 6]><style type="text/css" media="all">@import "<?php echo base_path() . path_to_theme() ?>/css/ie6.css";?></style><![endif]-->
 
   <!-- Uncomment if you are specifically targeting less enabled mobile browsers
-  <link rel="stylesheet" media="handheld" href="css/handheld.css">  -->
+  <link rel="stylesheet" media="handheld" href="<?php echo $zentropy_path;?>/css/handheld.css">  -->
 
   <?php if (!module_exists('modernizr')): ?>
   <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
   <!-- IMPORTANT: Uncomment the following line and install Modernizr to enable full HTML5 support. See README.txt -->
-  <!--<script src="js/libs/modernizr-1.6.min.js"></script>-->
+  <!--<script src="<?php echo $zentropy_path;?>/js/libs/modernizr-1.6.min.js"></script>-->
   <?php endif;?>
 
 </head>
@@ -117,9 +113,9 @@
   <!-- Javascript at the bottom for fast page loading -->
   <?php print $scripts; ?>
   
-  <!-- Uncomment lines 122 and 123 to support transparent PNGs in IE6 and below -->
+  <!-- Uncomment lines 118 and 119 to support transparent PNGs in IE6 and below -->
   <!--[if lt IE 7 ]>
-    <!--<script src="js/libs/dd_belatedpng.js"></script>
+    <!--<script src="<?php echo $zentropy_path;?>/js/libs/dd_belatedpng.js"></script>
     <!--<script> DD_belatedPNG.fix('img, .png_bg'); //fix any <img> or .png_bg background-images </script>
   <![endif]-->
   

@@ -44,6 +44,9 @@ function zentropy_preprocess_html(&$vars) {
   $has_main_menu = theme_get_setting('toggle_main_menu');
   $has_secondary_menu = theme_get_setting('toggle_secondary_menu');
   
+  /* Cache full path to theme */
+  $vars['zentropy_path'] = base_path() . path_to_theme();
+  
   /* Add extra classes to body for advanced theming */
   
   if ($has_main_menu or $has_secondary_menu) {
