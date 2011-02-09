@@ -6,9 +6,26 @@
  * - Define functions used in events
  */
 
-// Adds String.trim() method
+// Add String.trim() method
 String.prototype.trim = function(){
 	return this.replace(/\s+$/, '').replace(/^\s+/, '');
+}
+
+// Add Array.indexOf() method
+if (!Array.prototype.indexOf) {
+  Array.prototype.indexOf = function (obj, fromIndex) {
+    if (fromIndex == null) {
+      fromIndex = 0;
+    } else if (fromIndex < 0) {
+      fromIndex = Math.max(0, this.length + fromIndex);
+    }
+    for (var i = fromIndex, j = this.length; i < j; i++) {
+      if (this[i] === obj){
+        return i;
+      }
+    }
+    return -1;
+  };
 }
 
 // jQuery Browser Detect Tweak For IE7
