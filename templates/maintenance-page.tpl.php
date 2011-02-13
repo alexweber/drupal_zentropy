@@ -9,7 +9,7 @@
  *
  * @see template_preprocess()
  * @see template_preprocess_maintenance_page()
- * @see bartik_process_maintenance_page()
+ * @see zentropy_process_maintenance_page()
  */
 ?><?php print $doctype; ?>
 <?php $html_tag_attrs = "xml:lang=\"{$language->language}\" dir=\"{$language->dir}\" {$rdf->version}{$rdf->namespaces}";?>
