@@ -1,99 +1,48 @@
 <?php
-// $Id$
-
-/**
- * @file
- * Contains theme override functions and preprocess & process functions for Zentropy theme.
+/*
+ *	 This function creates the body classes that are relative to each page
+ *	
+ *	@param $vars
+ *	  A sequential array of variables to pass to the theme template.
+ *	@param $hook
+ *	  The name of the theme function being called ("page" in this case.)
  */
 
-/**
- * Changes the default meta content-type tag to the shorter HTML5 version
- */
-function zentropy_html_head_alter(&$head_elements) {
-  $head_elements['system_meta_content_type']['#attributes'] = array(
-    'charset' => 'utf-8'
-  );
-}
+function zentropy_preprocess_page(&$vars, $hook) {
 
-/**
- * Changes the search form to use the HTML5 "search" input attribute
- */
-function zentropy_preprocess_search_block_form(&$vars) {
-  $vars['search_form'] = str_replace('type="text"', 'type="search"', $vars['search_form']);
-}
+	// Don't display empty help from node_help().
+	if ($vars['help'] == "<div class=\"help\"><p></p>\n</div>") {
+		$vars['help'] = '';
+	}
 
-/**
- * Uses RDFa attributes if the RDF module is enabled
- * Lifted from Adaptivetheme for D7, full credit to Jeff Burnz
- * ref: http://drupal.org/node/887600
- */
-function zentropy_preprocess_html(&$vars) {
-  if (module_exists('rdf')) {
-    $vars['doctype'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML+RDFa 1.1//EN"' . "\n" . '"http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">';
-    $vars['rdf']->version = 'version="HTML+RDFa 1.1"';
-    $vars['rdf']->namespaces = $vars['rdf_namespaces'];
-    $vars['rdf']->profile = ' profile="' . $vars['grddl_profile'] . '"';
-  } else {
-    $vars['doctype'] = '<!DOCTYPE html>' . "\n";
-    $vars['rdf']->version = '';
-    $vars['rdf']->namespaces = '';
-    $vars['rdf']->profile = '';
-  }
-  
-  /* Since menu is rendered in preprocess_page we need to detect it here to add body classes */
-  $has_main_menu = theme_get_setting('toggle_main_menu');
-  $has_secondary_menu = theme_get_setting('toggle_secondary_menu');
-  
-  /* Cache full path to theme */
-  $vars['zentropy_path'] = base_path() . path_to_theme();
-  
-  /* Add extra classes to body for advanced theming */
-  
-  if ($has_main_menu or $has_secondary_menu) {
-    $vars['classes_array'][] = 'with-navigation';
-  }
-  
-  if ($has_secondary_menu) {
-    $vars['classes_array'][] = 'with-subnav';
-  }
-  
-  if (!empty($vars['page']['featured'])) {
-    $vars['classes_array'][] = 'featured';
-  }
-
-  if (!empty($vars['page']['triptych_first'])
-    || !empty($vars['page']['triptych_middle'])
-    || !empty($vars['page']['triptych_last'])) {
-    $vars['classes_array'][] = 'triptych';
-  }
-
-  if (!empty($vars['page']['footer_firstcolumn'])
-    || !empty($vars['page']['footer_secondcolumn'])
-    || !empty($vars['page']['footer_thirdcolumn'])
-    || !empty($vars['page']['footer_fourthcolumn'])) {
-    $vars['classes_array'][] = 'footer-columns';
-  }
-  
-  if ($vars['is_admin']) {
-    $vars['classes_array'][] = 'admin';
-  }
-  
+	// Classes for body element. Allows advanced theming based on context
+	// (home page, node of certain type, etc.)
+	$body_classes = array($vars['body_classes']);
+	if (user_access('administer blocks')) {
+	  $body_classes[] = 'admin';
+	}
+	if (!empty($vars['primary_links']) or !empty($vars['secondary_links'])) {
+		$body_classes[] = 'with-navigation';
+	}
+	if (!empty($vars['secondary_links'])) {
+		$body_classes[] = 'with-secondary';
+	}
+	
+	/*
+	 * Removed due to not ever really being used
+	 */
+#	if (module_exists('taxonomy') && $vars['node']->nid) {
+#		foreach (taxonomy_node_get_terms($vars['node']) as $term) {
+#			$body_classes[] = 'tax-' . eregi_replace('[^a-z0-9]', '-', $term->name);
+#		}
+#	}
 	if (!$vars['is_front']) {
 		// Add unique classes for each page and website section
 		$path = drupal_get_path_alias($_GET['q']);
-		$temp = explode('/', $path, 2);
-		$section = array_shift($temp);
-		$page_name = array_shift($temp);
-		
-		if (isset($page_name)) {
-		  $vars['classes_array'][] = zentropy_id_safe('page-'. $page_name);
-		}
-		
-		$vars['classes_array'][] = zentropy_id_safe('section-'. $section);
-		
-		// add template suggestions
-		$vars['theme_hook_suggestions'][] = "page__section__" . $section;
-		$vars['theme_hook_suggestions'][] = "page__" . $page_name;
+		list($section, ) = explode('/', $path, 2);
+		$body_classes[] = zentropy_id_safe('page-'. $path);
+		$body_classes[] = zentropy_id_safe('section-'. $section);
+		$vars['template_files'][] = "page-section-" . $section;
 
 		if (arg(0) == 'node') {
 			if (arg(1) == 'add') {
@@ -110,211 +59,279 @@ function zentropy_preprocess_html(&$vars) {
 			}
 		}
 	}
+
+	/* Add template suggestions based on content type
+	* You can use a different page template depending on the
+	* content type or the node ID
+	* For example, if you wish to have a different page template
+	* for the story content type, just create a page template called
+	* page-type-story.tpl.php
+	* For a specific node, use the node ID in the name of the page template
+	* like this : page-node-22.tpl.php (if the node ID is 22)
+	*/
+
+	if ($vars['node']->type != "") {
+	  $vars['template_files'][] = "page-type-" . $vars['node']->type;
+#	  $vars['template_files'][] = "page-node-" . $vars['node']->nid;
+	}
+	$vars['body_classes'] = implode(' ', $body_classes); // Concatenate with spaces
 }
 
-function zentropy_preprocess_page(&$vars) {
-  if (isset($vars['node_title'])) {
-    $vars['title'] = $vars['node_title'];
-  }
-  
-  // Always print the site name and slogan, but if they are toggled off, we'll
-  // just hide them visually.
-  $vars['hide_site_name']   = theme_get_setting('toggle_name') ? FALSE : TRUE;
-  $vars['hide_site_slogan'] = theme_get_setting('toggle_slogan') ? FALSE : TRUE;
-  
-  if ($vars['hide_site_name']) {
-    // If toggle_name is FALSE, the site_name will be empty, so we rebuild it.
-    $vars['site_name'] = filter_xss_admin(variable_get('site_name', 'Drupal'));
-  }
-  
-  if ($vars['hide_site_slogan']) {
-    // If toggle_site_slogan is FALSE, the site_slogan will be empty, so we rebuild it.
-    $vars['site_slogan'] = filter_xss_admin(variable_get('site_slogan', ''));
-  }
-  
-  // Since the title and the shortcut link are both block level elements,
-  // positioning them next to each other is much simpler with a wrapper div.
-  if (!empty($vars['title_suffix']['add_or_remove_shortcut']) && $vars['title']) {
-    // Add a wrapper div using the title_prefix and title_suffix render elements.
-    $vars['title_prefix']['shortcut_wrapper'] = array(
-      '#markup' => '<div class="shortcut-wrapper clearfix">',
-      '#weight' => 100,
-    );
-    $vars['title_suffix']['shortcut_wrapper'] = array(
-      '#markup' => '</div>',
-      '#weight' => -99,
-    );
-    // Make sure the shortcut link is the first item in title_suffix.
-    $vars['title_suffix']['add_or_remove_shortcut']['#weight'] = -100;
-  }
-}
-
-/**
- * Implements hook_preprocess_maintenance_page().
+/*
+ *	This function creates the NODES classes, like 'node-unpublished' for nodes
+ *	that are not published, or 'node-mine' for node posted by the connected user...
+ *	
+ *	@param $vars
+ *	  A sequential array of variables to pass to the theme template.
+ *	@param $hook
+ *	  The name of the theme function being called ("node" in this case.)
  */
-function zentropy_preprocess_maintenance_page(&$vars) {
-  if (!$vars['db_is_active']) {
-    unset($vars['site_name']);
-  }
-  drupal_add_css(drupal_get_path('theme', 'zentropy') . '/css/maintenance-page.css');
-}
 
-/**
- * Override or insert variables into the maintenance page template.
- */
-function zentropy_process_maintenance_page(&$vars) {
-  // Always print the site name and slogan, but if they are toggled off, we'll
-  // just hide them visually.
-  $vars['hide_site_name']   = theme_get_setting('toggle_name') ? FALSE : TRUE;
-  $vars['hide_site_slogan'] = theme_get_setting('toggle_slogan') ? FALSE : TRUE;
-  if ($vars['hide_site_name']) {
-    // If toggle_name is FALSE, the site_name will be empty, so we rebuild it.
-    $vars['site_name'] = filter_xss_admin(variable_get('site_name', 'Drupal'));
-  }
-  if ($vars['hide_site_slogan']) {
-    // If toggle_site_slogan is FALSE, the site_slogan will be empty, so we rebuild it.
-    $vars['site_slogan'] = filter_xss_admin(variable_get('site_slogan', ''));
-  }
-}
-
-/** 
- * Implementation of phptemplate_preprocess_node().
- *
- * Adds extra classes to node container for advanced theming
- */
-function zentropy_preprocess_node(&$vars) {
-  // Striping class
-  $vars['classes_array'][] = 'node-' . $vars['zebra'];
-  
-  // Node is published
-  $vars['classes_array'][] = ($vars['status']) ? 'published' : 'unpublished';
-  
-  // Node has comments?
-  $vars['classes_array'][] = ($vars['comment']) ? 'with-comments' : 'no-comments';
-  
+function zentropy_preprocess_node(&$vars, $hook) {
+  // Special classes for nodes
+  $classes = array('node');
   if ($vars['sticky']) {
-    $vars['classes_array'][] = 'sticky'; // Node is sticky
+    $classes[] = 'sticky';
   }
-  
-  if ($vars['promote']) {
-    $vars['classes_array'][] = 'promote'; // Node is promoted to front page
+  // support for Skinr Module
+  if (module_exists('skinr')) {
+    $classes[] = $vars['skinr'];
   }
-  
-  if ($vars['teaser']) {
-    $vars['classes_array'][] = 'node-teaser'; // Node is displayed as teaser.
+  if (!$vars['status']) {
+    $classes[] = 'node-unpublished';
+    $vars['unpublished'] = TRUE;
   }
-  
-  if ($vars['uid'] && $vars['uid'] === $GLOBALS['user']->uid) {
+  else {
+    $vars['unpublished'] = FALSE;
+  }
+  if ($vars['uid'] && $vars['uid'] == $GLOBALS['user']->uid) {
     $classes[] = 'node-mine'; // Node is authored by current user.
   }
-  
-   $vars['submitted'] = t('published by !username on !datetime', array('!username' => $vars['name'], '!datetime' => $vars['date']));
-  if ($vars['view_mode'] == 'full' && node_is_page($vars['node'])) {
-    $vars['classes_array'][] = 'node-full';
+  if ($vars['teaser']) {
+    $classes[] = 'node-teaser'; // Node is displayed as teaser.
   }
+  $classes[] = 'clearfix';
+
+  // Class for node type: "node-type-page", "node-type-story", "node-type-my-custom-type", etc.
+  $classes[] = zentropy_id_safe('node-type-' . $vars['type']);
+  $vars['classes'] = implode(' ', $classes); // Concatenate with spaces
 }
+
+/*
+ *	This function create the EDIT LINKS for blocks and menus blocks.
+ *	When hovering a block (except in IE6), some links appear to edit
+ *	or configure the block. You can then edit the block, and once you are
+ *	done, brought back to the first page.
+ *
+ * @param $vars
+ *   A sequential array of variables to pass to the theme template.
+ * @param $hook
+ *   The name of the theme function being called ("block" in this case.)
+ */ 
 
 function zentropy_preprocess_block(&$vars, $hook) {
-  // Add a striping class.
-  $vars['classes_array'][] = 'block-' . $vars['zebra'];
-  
-  // In the header region visually hide block titles.
-  if ($vars['block']->region == 'header') {
-    $vars['title_attributes_array']['class'][] = 'element-invisible';
+    $block = $vars['block'];
+
+    // special block classes
+    $classes = array('block');
+    $classes[] = zentropy_id_safe('block-' . $vars['block']->module);
+    $classes[] = zentropy_id_safe('block-' . $vars['block']->region);
+    $classes[] = zentropy_id_safe('block-id-' . $vars['block']->bid);
+    $classes[] = 'clearfix';
+    
+    // support for Skinr Module
+    if (module_exists('skinr')) {
+      $classes[] = $vars['skinr'];
+    }
+    
+    $vars['block_classes'] = implode(' ', $classes); // Concatenate with spaces
+
+    if (theme_get_setting('zentropy_block_editing') && user_access('administer blocks')) {
+    	// Display 'edit block' for custom blocks.
+      if ($block->module == 'block') {
+        $edit_links[] = l('<span>' . t('edit block') . '</span>', 'admin/build/block/configure/' . $block->module . '/' . $block->delta,
+          array(
+            'attributes' => array(
+              'title' => t('edit the content of this block'),
+              'class' => 'block-edit',
+            ),
+            'query' => drupal_get_destination(),
+            'html' => TRUE,
+          )
+        );
+      }
+      // Display 'configure' for other blocks.
+      else {
+        $edit_links[] = l('<span>' . t('configure') . '</span>', 'admin/build/block/configure/' . $block->module . '/' . $block->delta,
+          array(
+            'attributes' => array(
+              'title' => t('configure this block'),
+              'class' => 'block-config',
+            ),
+            'query' => drupal_get_destination(),
+            'html' => TRUE,
+          )
+        );
+      }
+      // Display 'edit menu' for Menu blocks.
+      if (($block->module == 'menu' || ($block->module == 'user' && $block->delta == 1)) && user_access('administer menu')) {
+        $menu_name = ($block->module == 'user') ? 'navigation' : $block->delta;
+        $edit_links[] = l('<span>' . t('edit menu') . '</span>', 'admin/build/menu-customize/' . $menu_name,
+          array(
+            'attributes' => array(
+              'title' => t('edit the menu that defines this block'),
+              'class' => 'block-edit-menu',
+            ),
+            'query' => drupal_get_destination(),
+            'html' => TRUE,
+          )
+        );
+      }
+      // Display 'edit menu' for Menu block blocks.
+      elseif ($block->module == 'menu_block' && user_access('administer menu')) {
+        list($menu_name, ) = split(':', variable_get("menu_block_{$block->delta}_parent", 'navigation:0'));
+        $edit_links[] = l('<span>' . t('edit menu') . '</span>', 'admin/build/menu-customize/' . $menu_name,
+          array(
+            'attributes' => array(
+              'title' => t('edit the menu that defines this block'),
+              'class' => 'block-edit-menu',
+            ),
+            'query' => drupal_get_destination(),
+            'html' => TRUE,
+          )
+        );
+      }
+      $vars['edit_links_array'] = $edit_links;
+      $vars['edit_links'] = '<div class="edit">' . implode(' ', $edit_links) . '</div>';
+    }
   }
-}
 
-/**
- * Implements theme_menu_tree().
- */
-function zentropy_menu_tree($vars) {
-  return '<ul class="menu clearfix">' . $vars['tree'] . '</ul>';
-}
-
-/**
- * Implements theme_field__field_type().
- */
-function zentropy_field__taxonomy_term_reference($vars) {
-  $output = '';
-
-  // Render the label, if it's not hidden.
-  if (!$vars['label_hidden']) {
-    $output .= '<h3 class="field-label">' . $vars['label'] . ': </h3>';
-  }
-
-  // Render the items.
-  $output .= ($vars['element']['#label_display'] == 'inline') ? '<ul class="links inline">' : '<ul class="links">';
-  foreach ($vars['items'] as $delta => $item) {
-    $output .= '<li class="taxonomy-term-reference-' . $delta . '"' . $vars['item_attributes'][$delta] . '>' . drupal_render($item) . '</li>';
-  }
-  $output .= '</ul>';
-
-  // Render the top-level DIV.
-  $output = '<div class="' . $vars['classes'] . (!in_array('clearfix', $vars['classes_array']) ? ' clearfix' : '') . '">' . $output . '</div>';
-
-  return $output;
-}
-
-/**
- * Return a themed breadcrumb trail.
+/*
+ * Override or insert PHPTemplate variables into the block templates.
  *
- * @param $breadcrumb
- *   An array containing the breadcrumb links.
- * @return
- *   A string containing the breadcrumb output.
+ *  @param $vars
+ *    An array of variables to pass to the theme template.
+ *  @param $hook
+ *    The name of the template being rendered ("comment" in this case.)
  */
-function zentropy_breadcrumb($vars) {
-  $breadcrumb = $vars['breadcrumb'];
-  // Determine if we are to display the breadcrumb.
-  $show_breadcrumb = theme_get_setting('breadcrumb_display');
-  if ($show_breadcrumb == 'yes') {
 
-    // Optionally get rid of the homepage link.
-    $show_breadcrumb_home = theme_get_setting('breadcrumb_home');
-    if (!$show_breadcrumb_home) {
-      array_shift($breadcrumb);
+function zentropy_preprocess_comment(&$vars, $hook) {
+  // Add an "unpublished" flag.
+  $vars['unpublished'] = ($vars['comment']->status == COMMENT_NOT_PUBLISHED);
+
+  // If comment subjects are disabled, don't display them.
+  if (variable_get('comment_subject_field_' . $vars['node']->type, 1) == 0) {
+    $vars['title'] = '';
+  }
+
+  // Special classes for comments.
+  $classes = array('comment');
+  if ($vars['comment']->new) {
+    $classes[] = 'comment-new';
+  }
+  $classes[] = $vars['status'];
+  $classes[] = $vars['zebra'];
+  if ($vars['id'] == 1) {
+    $classes[] = 'first';
+  }
+  if ($vars['id'] == $vars['node']->comment_count) {
+    $classes[] = 'last';
+  }
+  if ($vars['comment']->uid == 0) {
+    // Comment is by an anonymous user.
+    $classes[] = 'comment-by-anon';
+  }
+  else {
+    if ($vars['comment']->uid == $vars['node']->uid) {
+      // Comment is by the node author.
+      $classes[] = 'comment-by-author';
     }
-
-    // Return the breadcrumb with separators.
-    if (!empty($breadcrumb)) {
-      $separator = filter_xss(theme_get_setting('breadcrumb_separator'));
-      $trailing_separator = $title = '';
-      
-      // Add the title and trailing separator
-      if (theme_get_setting('breadcrumb_title')) {
-        if ($title = drupal_get_title()) {
-          $trailing_separator = $separator;
-        }
-      }
-      // Just add the trailing separator
-      elseif (theme_get_setting('breadcrumb_trailing')) {
-        $trailing_separator = $separator;
-      }
-
-      // Assemble the breadcrumb
-      return implode($separator, $breadcrumb) . $trailing_separator . $title;
+    if ($vars['comment']->uid == $GLOBALS['user']->uid) {
+      // Comment was posted by current user.
+      $classes[] = 'comment-mine';
     }
   }
-  // Otherwise, return an empty string.
-  return '';
+  $vars['classes'] = implode(' ', $classes);
 }
 
 /* 	
- * 	Converts a string to a suitable html ID attribute.
- *  Copied from "zentropy"
+ * 	Customize the PRIMARY and SECONDARY LINKS, to allow the admin tabs to work on all browsers
+ * 	An implementation of theme_menu_item_link()
  * 	
- * 	 http://www.w3.org/TR/html4/struct/global.html#h-7.5.2 specifies what makes a
- * 	 valid ID attribute in HTML. This function:
- * 	
- * 	- Ensure an ID starts with an alpha character by optionally adding an 'n'.
- * 	- Replaces any character except A-Z, numbers, and underscores with dashes.
- * 	- Converts entire string to lowercase.
- * 	
- * 	@param $string
- * 	  The string
+ * 	@param $link
+ * 	  array The menu item to render.
  * 	@return
- * 	  The converted string
+ * 	  string The rendered menu item.
+ */ 	
+
+function zentropy_menu_item_link($link) {
+  if (empty($link['localized_options'])) {
+    $link['localized_options'] = array();
+  }
+
+  // If an item is a LOCAL TASK, render it as a tab
+  if ($link['type'] & MENU_IS_LOCAL_TASK) {
+    $link['title'] = '<span class="tab">' . check_plain($link['title']) . '</span>';
+    $link['localized_options']['html'] = true;
+  }
+
+  return l($link['title'], $link['href'], $link['localized_options']);
+}
+
+
+/*
+ *  Duplicate of theme_menu_local_tasks() but adds clear-block to tabs.
+ */
+
+function zentropy_menu_local_tasks() {
+  $output = '';
+  if ($primary = menu_primary_local_tasks()) {
+    if(menu_secondary_local_tasks()) {
+      $output .= '<ul class="tabs primary with-secondary clearfix">' . $primary . '</ul>';
+    }
+    else {
+      $output .= '<ul class="tabs primary clearfix">' . $primary . '</ul>';
+    }
+  }
+  if ($secondary = menu_secondary_local_tasks()) {
+    $output .= '<ul class="tabs secondary clearfix">' . $secondary . '</ul>';
+  }
+  return $output;
+}
+
+/* 	
+ * 	Add custom classes to menu item
  */	
+	
+function zentropy_menu_item($link, $has_children, $menu = '', $in_active_trail = FALSE, $extra_class = NULL) {
+  $class = ($menu ? 'expanded' : ($has_children ? 'collapsed' : 'leaf'));
+  if (!empty($extra_class)) {
+    $class .= ' '. $extra_class;
+  }
+  if ($in_active_trail) {
+    $class .= ' active-trail';
+  }
+	// New line added to get unique classes for each menu item
+  $css_class = zentropy_id_safe(str_replace(' ', '_', strip_tags($link)));
+  return '<li class="'. $class . ' ' . $css_class . '">' . $link . $menu ."</li>\n";
+}
+
+/*	
+ *	Converts a string to a suitable html ID attribute.
+ *	
+ *	 http://www.w3.org/TR/html4/struct/global.html#h-7.5.2 specifies what makes a
+ *	 valid ID attribute in HTML. This function:
+ *	
+ *	- Ensure an ID starts with an alpha character by optionally adding an 'n'.
+ *	- Replaces any character except A-Z, numbers, and underscores with dashes.
+ *	- Converts entire string to lowercase.
+ *	
+ *	@param $string
+ *	  The string
+ *	@return
+ *	  The converted string
+ */	
+
 function zentropy_id_safe($string) {
   // Replace with dashes anything that isn't A-Z, numbers, dashes, or underscores.
   $string = strtolower(preg_replace('/[^a-zA-Z0-9_-]+/', '-', $string));
@@ -325,29 +342,13 @@ function zentropy_id_safe($string) {
   return $string;
 }
 
-/**
- * Determine whether to output Google Analytics tracking code
- *
- * @return bool
+/*
+ *  Return a themed breadcrumb trail.
+ *	Alow you to customize the breadcrumb markup
  */
-function zentropy_ga_enabled(){ 
-  if (!theme_get_setting('ga_enable')) {
-    return false;
+
+function zentropy_breadcrumb($breadcrumb) {
+  if (!empty($breadcrumb)) {
+    return '<div class="breadcrumb">'. implode(' &raquo; ', $breadcrumb) .'</div>';
   }
-  
-  global $user;
-  $roles_orig = theme_get_setting('ga_trackroles');
-  
-  // theme_get_setting() doesn't allow specifying default values so provide one here
-  if (!is_array($roles_orig)) {
-    $roles_orig = array();
-  }
-  
-  // remove roles with permission
-  $roles = array_filter($roles_orig);
-  
-  // get intersection of user's roles and roles without permission
-  $intersect = array_intersect(array_keys($user->roles), array_keys($roles));
-  
-  return empty($intersect);
 }

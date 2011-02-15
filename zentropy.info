@@ -1,60 +1,30 @@
-; $Id$
-
-; Theme Info -----------------------------------------------------------------
-; required information about the theme
-
 name = Zentropy
-description = Zentropy is a highly-optimized and extensible base HTML5 theme
-screenshot = screenshot.jpg
-core = 7.x
+description = Based on Basic, Zentropy is the most awesome starter theme since, well, Basic!
+screenshot = images/screenshot.jpg
+core = "6.x"
+project = "zentropy"
+engine = phptemplate
 
-; Stylesheets  ---------------------------------------------------------------
-; We use [screen] instead of [all] to avoid browser styles affecting 
-; other media types. IE stylesheets are loaded through template.php
-
-stylesheets[screen][] = css/boilerplate.css
-stylesheets[screen][] = css/layout.css
-stylesheets[screen][] = css/style.css
-
-
-scripts[] = js/zentropy.core.js
-
-; Regions --------------------------------------------------------------------
-; these content regions are available for block placement
-; some are special hidden regions: page_top, page_bottom, and help
-
-; these are the stock regions
-regions[header] = Header
-regions[help] = Help
-regions[page_top] = Page top
-regions[page_bottom] = Page bottom
-regions[highlighted] = Highlighted
-
-regions[featured] = Featured
+regions[above_top] = Above Content Top
 regions[content_top] = Content top
-regions[content] = Content
+regions[header] = Header
+regions[left] = First sidebar
+regions[right] = Second sidebar
+regions[footer_block] = Footer
 regions[content_bottom] = Content bottom
 
-regions[sidebar_first] = Sidebar first
-regions[sidebar_second] = Sidebar second
+features[] = logo
+features[] = name
+features[] = slogan
+features[] = search
+features[] = favicon
+features[] = primary_links
+features[] = secondary_links
 
-regions[triptych_first] = Triptych first
-regions[triptych_middle] = Triptych middle
-regions[triptych_last] = Triptych last
+stylesheets[all][] = css/yui.css
+stylesheets[all][] = css/layout.css
+stylesheets[all][] = css/style.css
+stylesheets[print][] = css/print.css
 
-regions[footer_firstcolumn] = Footer first column
-regions[footer_secondcolumn] = Footer second column
-regions[footer_thirdcolumn] = Footer third column
-regions[footer_fourthcolumn] = Footer fourth column
-regions[footer] = Footer
-
-; Options --------------------------------------------------------------------
-; these are the checkboxes that are available on the theme settings page.
-
-; additional theme settings
-settings[breadcrumb_display]   = yes
-settings[breadcrumb_separator] = ' › '
-settings[breadcrumb_home]      = 1
-settings[breadcrumb_trailing]  = 0
-settings[breadcrumb_title]     = 0
-settings[shortcut_module_link] = 0
+scripts[] = js/zentropy.core.js
+scripts[] = js/events.js

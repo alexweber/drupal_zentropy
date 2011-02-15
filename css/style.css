@@ -1,1 +1,149 @@
-/* Add your custom CSS here */
+*:focus { outline: none; }
+
+body {
+	margin: 0;
+  /*
+   * Setting up font size, leading and font family
+   * http://www.markboulton.co.uk/journal/comments/five-simple-steps-to-better-typography
+   */
+  font: 13px/1.5em "Helvetica Neue", helvetica, Arial, sans-serif;
+	background-color: #f8f8f8; /* @todo change this! */
+	color: #262626; /* @todo change this! */
+	margin: 0;
+}
+
+/* Links */
+
+a {
+	text-decoration: underline;
+	color: #336699; /* @todo change this! */
+}
+
+a:hover,
+a:active,
+a.active,
+a.active-trail {
+	text-decoration: none;
+}
+
+/* Titles  */
+
+h1, h2, h3, h4, h5, h6 {
+	line-height:1.3em;
+	color: #336699; /* @todo change this! */
+}
+
+h1 {
+	font-size: 2.2em;
+	font-weight:300;
+	padding: 0 0 0.5em;
+	margin: 0;
+}
+
+h2 {font-size:1.6em;font-weight:300;margin-bottom:0.75em;}
+h3 {font-size:1.3em;margin-bottom:1em;}
+h4 {font-size:1.2em;margin-bottom:0.8em;}
+h5 {font-size:1.1em;font-weight:600;margin-bottom:0;}
+h6 {font-size:1em;font-weight:bold;}
+
+/* Paragraph Styles */
+
+p {
+	font-size: 0.9em;
+	line-height: 1.5em;
+	margin:0 0 1em 0;
+}
+
+/* List Styles  */
+
+ul, ol {
+  margin-left: 0;
+  padding-left: 2em;
+}
+
+/* Table Styles  */
+
+table {
+	width: 99%;
+}
+
+tr.even td, tr.odd td {
+	padding: 10px 5px;
+}
+
+tr.odd {
+	background-color: #fff;
+}
+
+/* List Styles */
+
+ul,
+ul ul,
+ul ul ul,
+ul ul ul ul,
+ol,
+ol ol,
+ol ol ol,
+ul li,
+ol li {
+	list-style: none;
+}
+
+/* Abbreviation */
+
+abbr {
+	border-bottom: 1px dotted #262626; /* @todo change this! */
+	cursor: help;
+	white-space: nowrap;
+}
+
+/* UI improvments  */
+
+#edit-title{
+	font-size: 24px;
+}
+
+#system-themes-form img{
+	width:100px;
+}
+
+.form-item .description{
+	font-style:italic;
+	line-height:1.2em;
+	font-size:0.8em;
+	margin-top:5px;
+	color:#262626;
+}
+
+#edit-delete{
+	color:#c00;
+}
+
+/**
+ * Console, style from Slate theme
+ */
+div.messages {
+	padding: 9px;
+	margin: 1em 0;
+	color: #036;
+	background: #bdf;
+	border: 1px solid #ace;
+}
+
+div.warning {
+	color: #840;
+	background: #fe6;
+	border-color: #ed5;
+}
+
+div.error {
+	color: #fff;
+	background: #e63;
+	border-color: #d52;
+}
+
+div.status {
+	color: #360;
+	background: #cf8;
+	border-color: #be7;
+}

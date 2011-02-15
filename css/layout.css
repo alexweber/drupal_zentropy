@@ -1,78 +1,209 @@
-/* $Id$ */
-/* Main Zentropy Layout Styles  */
+/** Clear Floats Without Structural Markup: 
+---------------------------------
+*  http://www.positioniseverything.net/easyclearing.html
+*/
 
-.ahem,
-#skip-link {
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.clearfix { display: inline-block; }
+
+/* Hides from IE-mac \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* End hide from IE-mac */
+
+/* clear classes */
+
+.clearleft, .clearl, .cleft { clear: left; }
+.clearright, .clearr, .cright { clear: right; }
+.clear, .clearboth, .clearall{ clear: both; }
+
+/* Float classes */
+
+.floatleft, .fleft, .floatl { float: left; margin: 0 10px 5px 0; }
+.floatright, .fright, .floatr { float: right; margin: 0 0 5px 10px; }
+
+/** "Skip to Main Content" link
+---------------------------------
+*  This link useful for both visually impaired people and those with mobility impairments
+*  who cannot use a mouse. http://www.webaim.org/techniques/css/invisiblecontent/
+*/
+
+#skip a, #skip a:hover, #skip a:visited {
+  position: absolute;
+  left:-10000px;
+  top:auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+#skip a:active, #skip a:focus {
+  position: static;
+  width: auto;
+  height: auto;
+}
+
+/** Hidden class
+-----------------
+*	 This is used for hiding content visually but displaying it to screen readers
+*  http://webaim.org/techniques/css/invisiblecontent/
+*/
+.hidden {
+	position:absolute;
+	left:-10000px;
+	top:auto;
+	width:1px;
+	height:1px;
+	overflow:hidden;
+}
+
+/* bug fix with views 2 edit links */
+
+div.view div.views-admin-links {
+	width:auto;
+}
+
+/** Rollover edit links for blocks */
+
+div.block {
+  position: relative;
+}
+div.block .edit {
   display: none;
+  position: absolute;
+  right: -20px;
+  top: -5px;
+  z-index: 40;
+  padding: 3px 8px 0;
+  font-size: 10px;
+  line-height:16px;
+  background-color: #fff;
+  border:1px solid #ccc;
+  /*let's get fancy !*/
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-box-shadow: 0 1px 3px #888;
+  -webkit-box-shadow: -1px 1px 2px #666;
+}
+div.block .edit a {
+  display:block;
+  border:0;
+  padding:0;
+  margin:0;
+}
+div.block:hover .edit {
+  display: block;
 }
 
-/* uncomment these color rules to make the layout easier to see */
-#main { background: #ccc; }
-#content { background: #eee; }
-#sidebar-first { background: #ccf; }
-#sidebar-second { background: #fcc; }
-#main-menu { background: #ffc; }
-#secondary-menu { background: #fcf; }
-#header { background: #cff; }
-#footer { background: #cfc; }
+/** Layout
+---------------------------------
+*  Using a negative margin technique, adapted from ZEN. The page is loaded by this order:
+*  
+*  1. Header
+*  2. Content
+*  3. Navigation menus
+*  4. Sidebar Left
+*  5. Sideabr Right
+*	
+*/
 
-/* Holy Grail Layout ---------------------------------------------------------
-   ref: http://www.alistapart.com/articles/holygrail
-   This layout takes advantage of negative margins to float the sidebars to
-   either side of the main content. It also floats the navigation above the
-   content, but you could just as easily absolutely position it.
-   
-   LC stands for Left Column, RC for Right Column
-   
-   Obvously, this layout is for left-to-right languages. For a
-   right-to-left layout, just swap all the left and rights below.
-   */
 #page {
-  width: 960px;
-  margin: 0 auto;
+	width: 960px; /* edit to change the width of the page */
+	margin: 0 auto; /* remove 'auto' and the width to switch to a fluid width */
 }
 
-#content,
-#navigation,
-#sidebar-first,
-#sidebar-second {
-  float: left;
-}
-
-#navigation {
-  width: 100%;
-  margin-right: -100%;
-}
-
-#navigation h2 {
-  margin: 0;
-}
+/** LAYOUT RULES
+---------------------------------
+*  do not change if you're not sure you know what you're doing
+*/
 
 #content {
+  float: left;
   width: 100%;
   margin-right: -100%;
+  padding: 0;
 }
-
-.sidebar-first #content .section {
-  padding-left: 200px;   /* LC width */
+.sidebar {
+  float: left;
 }
-
-.sidebar-second #content .section {
-  padding-right: 160px;  /* RC width */
-}
-
-.two-sidebars #content .section {
-  padding-left: 200px;   /* LC width */
-  padding-right: 160px;  /* RC width */
-}
-
-#sidebar-first {
-  width: 200px;          /* LC width */
-  margin-right: -200px;
-}
-
 #sidebar-second {
   float: right;
-  width: 160px;          /* RC width */
-  margin-left: -160px;   /* RC width */
+}
+#footer {
+  float: none;
+}
+
+/* Layout Helpers */
+
+#header, #footer, .breadcrumb, .node {
+  clear: both;
+}
+
+/** Sidebars width
+---------------------------------
+*  Changing the width of the sidebars is dead easy, just change the
+*  values below corresponding to the sidebar you want to modify.
+*  Make sure you keep negative values as negative values.
+*  For example, if I want to increase the width of the left sidebar
+*  to 300px, I would have to change each '190' to '300'.
+*/
+
+.two-sidebars .center,
+.sidebar-left .center {
+  margin-left: 190px;     /* LEFT value */
+}
+#sidebar-first {
+  width: 190px;           /* LEFT value */
+	margin-right: -190px;    /* negative LEFT value */
+}
+.two-sidebars .center,
+.sidebar-right .center {
+  margin-right: 200px;    /* RIGHT value */
+}
+#sidebar-second {
+  width: 200px;           /* RIGHT value */
+}
+
+/** Columns inner
+---------------------------------
+*  You can change the padding inside the columns without changing the
+*  width of them by just usinbg the INNER div of each column
+*/
+
+.inner {
+	padding: 0px;
+}
+
+/* Main Content Area */
+
+#main {
+	padding: 1em;
+}
+
+/** Navigation styles
+---------------------------------
+*  The navigation is loaded after the content, so we need to make space
+*  for it, equal to its height, so if you change the height of the navigation,
+*  remember to adapt the margin top of the content and sidebars.
+*/
+
+#navigation {
+  float: left;
+  margin-left: 0;
+  margin-right: -100%;
+  padding: 0;
+  width: 100%;
+}
+.with-navigation #content,
+.with-navigation .sidebar {
+  margin-top: 40px;        /* Navigation Height */
+}
+#navigation {
+  height: 40px;            /* Navigation Height */
 }
