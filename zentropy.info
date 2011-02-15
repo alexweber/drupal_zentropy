@@ -1,6 +1,6 @@
 name = Zentropy
 description = Based on Basic, Zentropy is the most awesome starter theme since, well, Basic!
-screenshot = images/screenshot.jpg
+screenshot = screenshot.jpg
 core = "6.x"
 project = "zentropy"
 engine = phptemplate
@@ -24,7 +24,8 @@ features[] = secondary_links
 stylesheets[all][] = css/yui.css
 stylesheets[all][] = css/layout.css
 stylesheets[all][] = css/style.css
+stylesheets[all][] = css/ie.css
 stylesheets[print][] = css/print.css
 
 scripts[] = js/zentropy.core.js
-scripts[] = js/events.js
+scripts[] = js/zentropy.events.js

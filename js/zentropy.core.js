@@ -1,11 +1,5 @@
 /**
  * Zentropy javascript core
- *
- * @author Alex Weber <alexweber.com.br>
- *
- * - Provides frequently used extensions to base javascript objects
- * - jQuery browser detection tweak
- * - Define functions used in events
  */
 
 // Add String.trim() method
@@ -59,4 +53,9 @@ Zentropy.image.preload = function(){
     cacheImage.src = arguments[i];
     Zentropy.image._cache.push(cacheImage);
   }
+}
+
+// remove no-js class from body so we know js is enabled when styling
+Drupal.behaviors.zentropy_jsflag = function() {
+  $('html').removeClass('no-js');
 }

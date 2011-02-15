@@ -1,14 +1,34 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $language->language ?>" lang="<?php echo $language->language ?>" dir="<?php echo $language->dir ?>">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php $html_tag_attrs = "xml:lang=\"{$language->language}\" dir=\"{$language->dir}\"";?>
+<!-- If you don't care about older browsers remove the following declarations -->
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html <?php print $html_tag_attrs;?> class="no-js ie6" <![endif]-->
+<!--[if IE 7 ]> <html <?php print $html_tag_attrs;?> class="no-js ie7" <![endif]-->
+<!--[if IE 8 ]> <html <?php print $html_tag_attrs;?> class="no-js ie8" <![endif]-->
+<!--[if IE 9 ]> <html <?php print $html_tag_attrs;?> class="no-js ie9" <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html <?php print $html_tag_attrs;?> class="no-js"> <!--<![endif]-->
   <head>
     
     <title><?php echo $head_title; ?></title>
     <?php echo $head; ?>
+    
+  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame  -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <!--  Mobile viewport optimized: j.mp/bplateviewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Prevent blocking -->
+  <!--[if IE 6]><![endif]-->
+    
     <?php echo $styles; ?>
-    <!--[if IE 7]><style type="text/css" media="all">@import "<?php echo $base_path . path_to_theme() ?>/css/ie7.css";</style><![endif]-->
-<!--[if IE 8]><style type="text/css" media="all">@import "<?php echo $base_path . path_to_theme() ?>/css/ie8.css";</style><![endif]-->
     <?php echo $scripts; ?>
+    
+  <!--[if lt IE 7 ]>
+    <!--<script src="<?php echo $base_path . path_to_theme() ?>/js/libs/dd_belatedpng.js"></script>
+    <!--<script> DD_belatedPNG.fix('img, .png_bg'); //fix any <img> or .png_bg background-images </script>
+  <![endif]-->
   </head>
 
   <body class="<?php echo $body_classes; ?>">
@@ -144,5 +164,18 @@
 
     </div> <!-- /page -->
     <?php echo $closure; ?>
+    
+    <?php if(user_is_anonymous()): ?>
+    <!-- Google Analytics : mathiasbynens.be/notes/async-analytics-snippet -->
+    <script type="text/javascript">
+      <!--//--><![CDATA[//><!--
+      var _gaq=[['_setAccount','<?php print theme_get_setting('ga_trackingcode');?>'],['_trackPageview']];
+      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+      g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+      s.parentNode.insertBefore(g,s)}(document,'script'));
+      //--><!]]>
+    </script>
+    <?php endif;?>
+    
   </body>
 </html>
