@@ -45,7 +45,7 @@ DirectoryIndex index.php
   ExpiresActive On
 
   # Cache all files for 1 week after access
-  ExpiresDefault                          "access plus 1 month"
+  ExpiresDefault                          "access plus 1 week"
 
   # cache.manifest needs re-requests in FF 3.6
   ExpiresByType text/cache-manifest       "access plus 0 seconds"
@@ -65,9 +65,9 @@ DirectoryIndex index.php
   ExpiresByType image/vnd.microsoft.icon  "access plus 1 year"
 
   # media: images, video, audio
-  ExpiresByType image/gif                 "access plus 2 months"
-  ExpiresByType image/png                 "access plus 2 months"
-  ExpiresByType image/jpg                 "access plus 2 months"
+  ExpiresByType image/gif                 "access plus 1 month"
+  ExpiresByType image/png                 "access plus 1 month"
+  ExpiresByType image/jpg                 "access plus 1 month"
 
   <FilesMatch \.php$>
     # Do not allow PHP scripts to be cached unless they explicitly send cache
@@ -138,5 +138,3 @@ FileETag None
 
 # We don't need to tell everyone we're apache.
 ServerSignature Off
-
-# $Id: .htaccess,v 1.90.2.5 2010/02/02 07:25:22 dries Exp $
