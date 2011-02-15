@@ -33,7 +33,8 @@ FEATURES
  * CSS3 Feature detection from Modernizr
  * Full HTML5 CSS Reset
  * Simple Google Analytics integration via theme settings
- * Bartik compatibility (most of Bartik's goodness is maintained)
+ * Bartik compatibility (all of Bartik's goodness is maintained)
+ * .htaccess performance tweaks
  * HTML5 doctype and meta content-type
  * Header and Footer sections marked up with header and footer elements
  * Navigation marked up with nav elements
@@ -60,6 +61,9 @@ INSTALLATION
   - Download from: http://code.google.com/p/html5shim/
   - Copy to: /path/to/theme/js/libs/html5.js
   - Uncomment line 66 in html.tpl.php
+
+ * To install the .htaccess performance tweaks just replace the contents of your .htaccess file with
+   the ones from the htaccess file in the theme's root
  
  * To support transparent PNGs in IE6 and below please install DDBelatedPNG:
   - Download from: http://www.dillerdesign.com/experiment/DD_belatedPNG/
