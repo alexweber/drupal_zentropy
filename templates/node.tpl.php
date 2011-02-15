@@ -13,15 +13,19 @@
 
     <div class="content">
       <?php print $content; ?>
-    </div>
+    </div><!-- /.content -->
 
     <?php if ($terms): ?>
-      <div class="taxonomy"><?php print $terms; ?></div>
+      <div class="taxonomy">
+        <?php print $terms; ?>
+      </div><!-- /.taxonomy -->
     <?php endif;?>
 
     <?php if ($links): ?> 
-      <div class="links"> <?php print $links; ?></div>
+      <div class="links">
+        <?php print $links; ?>
+      </div><!-- /.links -->
     <?php endif; ?>
 
-  </div> <!-- /node-inner -->
-</div> <!-- /node-->
+  </div><!-- /.node-inner -->
+</div><!-- /.node-->

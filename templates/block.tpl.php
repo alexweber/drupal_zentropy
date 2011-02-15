@@ -1,15 +1,15 @@
-<div id="block-<?php print $block->module .'-'. $block->delta ?>" class="<?php print $block_classes . ' ' . $block_zebra; ?>">
+<div id="block-<?php echo $block->module .'-'. $block->delta ?>" class="<?php echo $block_classes . ' ' . $block_zebra; ?>">
   <div class="block-inner">
 
     <?php if (!empty($block->subject)): ?>
-      <h3 class="title block-title"><?php print $block->subject; ?></h3>
+      <h3 class="title block-title"><?php echo $block->subject; ?></h3>
     <?php endif; ?>
 
     <div class="content">
-      <?php print $block->content; ?>
-    </div>
+      <?php echo $block->content; ?>
+    </div><!-- /.content -->
 
-    <?php print $edit_links; ?>
+    <?php echo $edit_links; ?>
 
-  </div> <!-- /block-inner -->
-</div> <!-- /block -->
+  </div><!-- /.block-inner -->
+</div><!-- /#block -->

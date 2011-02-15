@@ -50,8 +50,7 @@ function zentropy_preprocess_page(&$vars, $hook) {
 					array_pop($body_classes); // Remove 'section-node'
 				}
 				$body_classes[] = 'section-node-add'; // Add 'section-node-add'
-			}
-			elseif (is_numeric(arg(1)) && (arg(2) == 'edit' || arg(2) == 'delete')) {
+			} elseif (is_numeric(arg(1)) && (arg(2) == 'edit' || arg(2) == 'delete')) {
 				if ($section == 'node') {
 					array_pop($body_classes); // Remove 'section-node'
 				}
@@ -72,7 +71,6 @@ function zentropy_preprocess_page(&$vars, $hook) {
 
 	if ($vars['node']->type != "") {
 	  $vars['template_files'][] = "page-type-" . $vars['node']->type;
-#	  $vars['template_files'][] = "page-node-" . $vars['node']->nid;
 	}
 	$vars['body_classes'] = implode(' ', $body_classes); // Concatenate with spaces
 }
@@ -90,26 +88,26 @@ function zentropy_preprocess_page(&$vars, $hook) {
 function zentropy_preprocess_node(&$vars, $hook) {
   // Special classes for nodes
   $classes = array('node');
+
   if ($vars['sticky']) {
     $classes[] = 'sticky';
   }
-  // support for Skinr Module
-  if (module_exists('skinr')) {
-    $classes[] = $vars['skinr'];
-  }
+
   if (!$vars['status']) {
     $classes[] = 'node-unpublished';
     $vars['unpublished'] = TRUE;
-  }
-  else {
+  } else {
     $vars['unpublished'] = FALSE;
   }
+  
   if ($vars['uid'] && $vars['uid'] == $GLOBALS['user']->uid) {
     $classes[] = 'node-mine'; // Node is authored by current user.
   }
+  
   if ($vars['teaser']) {
     $classes[] = 'node-teaser'; // Node is displayed as teaser.
   }
+
   $classes[] = 'clearfix';
 
   // Class for node type: "node-type-page", "node-type-story", "node-type-my-custom-type", etc.
@@ -139,14 +137,9 @@ function zentropy_preprocess_block(&$vars, $hook) {
     $classes[] = zentropy_id_safe('block-id-' . $vars['block']->bid);
     $classes[] = 'clearfix';
     
-    // support for Skinr Module
-    if (module_exists('skinr')) {
-      $classes[] = $vars['skinr'];
-    }
-    
     $vars['block_classes'] = implode(' ', $classes); // Concatenate with spaces
 
-    if (theme_get_setting('zentropy_block_editing') && user_access('administer blocks')) {
+    if (user_access('administer blocks')) {
     	// Display 'edit block' for custom blocks.
       if ($block->module == 'block') {
         $edit_links[] = l('<span>' . t('edit block') . '</span>', 'admin/build/block/configure/' . $block->module . '/' . $block->delta,

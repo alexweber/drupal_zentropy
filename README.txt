@@ -4,11 +4,12 @@ Zentropy is a modification of the totally awesome Basic theme.  It is the ultima
 
 Here is what we changed:
 
-- Removed SASS stuff (never used)
-- Removed theme settings (not as practical as might seem)
 - Added Yaoo YUI Reset + Base CSS
 - Reorganized CSS files
 - Added base Javascript files
+- Removed SASS stuff (never used)
+- Removed theme settings (never used)
+- Remove skinr support (never used)
 - Tweaked preprocess_page and some other theme functions
 - .htaccess tweaks file for manual inclusion
 - Included a bunch of external js files (see warning below)
