@@ -1,13 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<?php $html_tag_attrs = "xml:lang=\"{$language->language}\" dir=\"{$language->dir}\"";?>
-<!-- If you don't care about older browsers remove the following declarations -->
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7 ]> <html <?php print $html_tag_attrs;?> class="no-js ie6" <![endif]-->
-<!--[if IE 7 ]> <html <?php print $html_tag_attrs;?> class="no-js ie7" <![endif]-->
-<!--[if IE 8 ]> <html <?php print $html_tag_attrs;?> class="no-js ie8" <![endif]-->
-<!--[if IE 9 ]> <html <?php print $html_tag_attrs;?> class="no-js ie9" <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html <?php print $html_tag_attrs;?> class="no-js"> <!--<![endif]-->
+<html xml:lang="<?php echo $language->language;?>" dir="<?php echo $language->dir;?>" class="no-js">
   <head>
     
     <title><?php echo $head_title; ?></title>
@@ -21,11 +14,20 @@
   
   <!-- Prevent blocking -->
   <!--[if IE 6]><![endif]-->
+
+  <?php echo $styles; ?>
+  <!--[if IE]>
+    <style type="text/css" media="all">@import "<?php print $base_path . path_to_theme() ?>/css/ie.css"</style>
+  <![endif]-->
+  <!--[if lte IE 7]>
+    <style type="text/css" media="all">@import "<?php print $base_path . path_to_theme() ?>/css/ie7.css"</style>
+  <![endif]-->
+  <!--[if lte IE 6]>
+    <style type="text/css" media="all">@import "<?php print $base_path . path_to_theme() ?>/css/ie6.css"</style>
+  <![endif]-->
+  <?php echo $scripts; ?>
     
-    <?php echo $styles; ?>
-    <?php echo $scripts; ?>
-    
-  <!--[if lt IE 7 ]>
+  <!--[if lte IE 6]>
     <!--<script src="<?php echo $base_path . path_to_theme() ?>/js/libs/dd_belatedpng.js"></script>
     <!--<script> DD_belatedPNG.fix('img, .png_bg'); //fix any <img> or .png_bg background-images </script>
   <![endif]-->
@@ -35,7 +37,7 @@
 	<?php if ($above_top): ?>
 	<div id="above_top-region">
 	  <?php echo $above_top; ?>
-	</div><!-- /above_top-region -->
+	</div><!-- /#above_top-region -->
 	<?php endif; ?>
 	
     <div id="skip"><a href="#content"><?php echo t('Skip to Content'); ?></a> <a href="#navigation"><?php echo t('Skip to Navigation'); ?></a></div>  
@@ -62,9 +64,9 @@
           <?php if (!empty($site_slogan)): ?>
             <div id="site-slogan"><?php echo $site_slogan; ?></div>
           <?php endif; ?>
-        </div> <!-- /name-and-slogan -->
+        </div><!-- /#name-and-slogan -->
 
-      </div> <!-- /logo-title -->
+      </div><!-- /#logo-title -->
 
       <?php if ($header): ?>
         <div id="header-region">
@@ -74,7 +76,7 @@
 
       <?php echo $search_box; ?>
 
-    </div> <!-- /header -->
+    </div><!-- /#header -->
 
     <!-- ______________________ MAIN _______________________ -->
 
@@ -86,7 +88,7 @@
           <?php if ($content_top): ?>
             <div id="content-top">
               <?php echo $content_top; ?>
-            </div> <!-- /content-top -->
+            </div><!-- /#content-top -->
           <?php endif; ?>
 
           <?php if ($breadcrumb || $title || $mission || $messages || $help || $tabs): ?>
@@ -110,29 +112,34 @@
                 <div class="tabs"><?php echo $tabs; ?></div>
               <?php endif; ?>
 
-            </div> <!-- /content-header -->
+            </div><!-- /#content-header -->
           <?php endif; ?>
 
           <div id="content-area">
             <?php echo $content; ?>
-          </div> <!-- /content-area -->
+            
+            <?php if ($content_area): ?>
+              <?php echo $content_area;?>
+            <?php endif;?>
+            
+          </div><!-- /#content-area -->
 
           <?php echo $feed_icons; ?>
 
           <?php if ($content_bottom): ?>
             <div id="content-bottom">
               <?php echo $content_bottom; ?>
-            </div><!-- /content-bottom -->
+            </div><!-- /#content-bottom -->
           <?php endif; ?>
 
-          </div>
-        </div> <!-- /content-inner /content -->
+          </div><!-- /#content-inner -->
+        </div><!-- /#content -->
 
         <?php if (!empty($primary_links) || !empty($secondary_links)): ?>
           <div id="navigation" class="menu <?php if (!empty($primary_links)) { echo "with-main-menu"; } if (!empty($secondary_links)) { echo " with-sub-menu"; } ?>">
             <?php if (!empty($primary_links)){ echo theme('links', $primary_links, array('id' => 'primary', 'class' => 'links main-menu')); } ?>
             <?php if (!empty($secondary_links)){ echo theme('links', $secondary_links, array('id' => 'secondary', 'class' => 'links sub-menu')); } ?>
-          </div> <!-- /navigation -->
+          </div><!-- /#navigation -->
         <?php endif; ?>
 
         <?php if ($left): ?>
@@ -141,7 +148,7 @@
               <?php echo $left; ?>
             </div>
           </div>
-        <?php endif; ?> <!-- /sidebar-left -->
+        <?php endif; ?><!-- /#sidebar-left -->
 
         <?php if ($right): ?>
           <div id="sidebar-second" class="column sidebar second">
@@ -149,20 +156,22 @@
               <?php echo $right; ?>
             </div>
           </div>
-        <?php endif; ?> <!-- /sidebar-second -->
+        <?php endif; ?><!-- /#sidebar-second -->
 
-      </div> <!-- /main -->
+      </div><!-- /#main -->
 
       <!-- ______________________ FOOTER _______________________ -->
 
       <?php if(!empty($footer_message) || !empty($footer_block)): ?>
         <div id="footer">
-          <?php echo $footer_message; ?>
-          <?php echo $footer_block; ?>
-        </div> <!-- /footer -->
+          <div id="footer-inner">
+            <?php echo $footer_message; ?>
+            <?php echo $footer_block; ?>
+          </div><!-- /#footer-inner -->
+        </div><!-- /#footer -->
       <?php endif; ?>
 
-    </div> <!-- /page -->
+    </div><!-- /#page -->
     <?php echo $closure; ?>
     
     <?php if(user_is_anonymous()): ?>

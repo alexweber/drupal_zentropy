@@ -1,29 +1,29 @@
-<div class="node <?php print $classes; ?>" id="node-<?php print $node->nid; ?>">
+<div class="node <?php echo $classes; ?>" id="node-<?php echo $node->nid; ?>">
   <div class="node-inner">
 
     <?php if (!$page): ?>
-      <h2 class="title"><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
+      <h2 class="title"><a href="<?php echo $node_url; ?>"><?php echo $title; ?></a></h2>
     <?php endif; ?>
 
-    <?php print $picture; ?>
+    <?php echo $picture; ?>
 
     <?php if ($submitted): ?>
-      <span class="submitted"><?php print $submitted; ?></span>
+      <span class="submitted"><?php echo $submitted; ?></span>
     <?php endif; ?>
 
     <div class="content">
-      <?php print $content; ?>
+      <?php echo $content; ?>
     </div><!-- /.content -->
 
     <?php if ($terms): ?>
       <div class="taxonomy">
-        <?php print $terms; ?>
+        <?php echo $terms; ?>
       </div><!-- /.taxonomy -->
     <?php endif;?>
 
     <?php if ($links): ?> 
       <div class="links">
-        <?php print $links; ?>
+        <?php echo $links; ?>
       </div><!-- /.links -->
     <?php endif; ?>
 

@@ -10,11 +10,12 @@ regions[content_top] = Content top
 regions[header] = Header
 regions[left] = First sidebar
 regions[right] = Second sidebar
-regions[footer_block] = Footer
+regions[content_area] = Content Area
 regions[content_bottom] = Content bottom
+regions[footer_block] = Footer
 
-features[] = logo
 features[] = name
+features[] = logo
 features[] = slogan
 features[] = search
 features[] = favicon
@@ -23,9 +24,13 @@ features[] = secondary_links
 
 stylesheets[all][] = css/yui.css
 stylesheets[all][] = css/layout.css
+;stylesheets[all][] = css/libs/jquery.colorbox.css
 stylesheets[all][] = css/style.css
 stylesheets[all][] = css/ie.css
-stylesheets[print][] = css/print.css
 
+;scripts[] = js/libs/jquery.colorbox.min.js
+;scripts[] = js/libs/jquery.easing.1.3.min.js
+;scripts[] = js/libs/jquery.hoverIntent.min.js
+;scripts[] = js/libs/jquery.coolinput.min.js
 scripts[] = js/zentropy.core.js
 scripts[] = js/zentropy.events.js
