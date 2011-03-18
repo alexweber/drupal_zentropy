@@ -2,45 +2,27 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xml:lang="<?php echo $language->language;?>" dir="<?php echo $language->dir;?>" class="no-js">
   <head>
-    
     <title><?php echo $head_title; ?></title>
     <?php echo $head; ?>
-    
-  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame  -->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      
+    <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame  -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <!--  Mobile viewport optimized: j.mp/bplateviewport -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Prevent blocking -->
-  <!--[if IE 6]><![endif]-->
+    <!--  Mobile viewport optimized: j.mp/bplateviewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <?php echo $styles; ?>
-  <!--[if IE]>
-    <style type="text/css" media="all">@import "<?php print $base_path . path_to_theme() ?>/css/ie.css"</style>
-  <![endif]-->
-  <!--[if lte IE 7]>
-    <style type="text/css" media="all">@import "<?php print $base_path . path_to_theme() ?>/css/ie7.css"</style>
-  <![endif]-->
-  <!--[if lte IE 6]>
-    <style type="text/css" media="all">@import "<?php print $base_path . path_to_theme() ?>/css/ie6.css"</style>
-  <![endif]-->
-  <?php echo $scripts; ?>
-    
-  <!--[if lte IE 6]>
-    <!--<script src="<?php echo $base_path . path_to_theme() ?>/js/libs/dd_belatedpng.js"></script>
-    <!--<script> DD_belatedPNG.fix('img, .png_bg'); //fix any <img> or .png_bg background-images </script>
-  <![endif]-->
+    <?php echo $styles; ?>
+    <?php echo $scripts; ?>
   </head>
 
   <body class="<?php echo $body_classes; ?>">
-	<?php if ($above_top): ?>
-	<div id="above_top-region">
-	  <?php echo $above_top; ?>
-	</div><!-- /#above_top-region -->
-	<?php endif; ?>
-	
-    <div id="skip"><a href="#content"><?php echo t('Skip to Content'); ?></a> <a href="#navigation"><?php echo t('Skip to Navigation'); ?></a></div>  
+
+	  <?php if ($above_top): ?>
+	  <div id="above_top-region">
+	    <?php echo $above_top; ?>
+	  </div><!-- /#above_top-region -->
+	  <?php endif; ?>
+
     <div id="page">
 
     <!-- ______________________ HEADER _______________________ -->

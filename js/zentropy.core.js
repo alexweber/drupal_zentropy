@@ -41,21 +41,13 @@ window.log = function(){
 // init object
 var Zentropy = Zentropy || {};
 
-/**
- * Image handling functions
- */
-Zentropy.image = { _cache : [] };
-
-// preload images
-Zentropy.image.preload = function(){
-  for(var i = arguments.length; i--;){
-    var cacheImage = document.createElement('img');
-    cacheImage.src = arguments[i];
-    Zentropy.image._cache.push(cacheImage);
+Drupal.behaviors.zentropy_jsinit = function() {
+  // add ie sniffer class for 8 and below
+  if ($.browser.msie && $.browser.version <= 8) {
+    $('html').addClass('ie').addClass('ie' + $.browser.version.substr(0, 1));
+    
+    if ($.browser.version <= 6 && DD_belatedPNG) {
+      DD_belatedPNG.fix('img, .pngfix');
+    }
   }
-}
-
-// remove no-js class from body so we know js is enabled when styling
-Drupal.behaviors.zentropy_jsflag = function() {
-  $('html').removeClass('no-js');
 }

@@ -18,12 +18,15 @@ function zentropy_preprocess_page(&$vars, $hook) {
 	// Classes for body element. Allows advanced theming based on context
 	// (home page, node of certain type, etc.)
 	$body_classes = array($vars['body_classes']);
+
 	if (user_access('administer blocks')) {
 	  $body_classes[] = 'admin';
 	}
+
 	if (!empty($vars['primary_links']) or !empty($vars['secondary_links'])) {
 		$body_classes[] = 'with-navigation';
 	}
+
 	if (!empty($vars['secondary_links'])) {
 		$body_classes[] = 'with-secondary';
 	}
@@ -70,8 +73,9 @@ function zentropy_preprocess_page(&$vars, $hook) {
 	*/
 
 	if ($vars['node']->type != "") {
-	  $vars['template_files'][] = "page-type-" . $vars['node']->type;
+	  $vars['template_files'][] = "page-node-" . $vars['node']->type;
 	}
+
 	$vars['body_classes'] = implode(' ', $body_classes); // Concatenate with spaces
 }
 
@@ -113,6 +117,11 @@ function zentropy_preprocess_node(&$vars, $hook) {
   // Class for node type: "node-type-page", "node-type-story", "node-type-my-custom-type", etc.
   $classes[] = zentropy_id_safe('node-type-' . $vars['type']);
   $vars['classes'] = implode(' ', $classes); // Concatenate with spaces
+  
+  // Add template suggestion for rendering nodes
+	if ($vars['node']->type != "") {
+	  $vars['template_files'][] = "node-" . $vars['node']->type;
+	}
 }
 
 /*
