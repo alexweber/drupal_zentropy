@@ -1,0 +1,5 @@
+Zentropy 6.21, 2011-03-18
+--------------------------
+- Included jQuery.tipTip
+- Improved zentropy.core.js by adding a general ie class and also adding classes to html instead of body
+- Documented CSS sample stylesheet
