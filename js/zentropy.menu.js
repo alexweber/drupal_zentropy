@@ -4,6 +4,7 @@
  * @author Alex Weber <alex@alexweber.com.br>
  * @copyright 2011 Alex Weber
  */
+//TODO this
 Zentropy.menu = function(firstlevel) {
-  console.log(firstlevel);
+  log(firstlevel);
 }

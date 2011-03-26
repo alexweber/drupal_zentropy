@@ -1,10 +1,18 @@
+<?php if ($zentropy_html5): ?>
+<!doctype html>
+<html lang="<?php echo $language->language;?>" dir="<?php echo $language->dir;?>" class="no-js">
+  <head profile="http://www.w3.org/1999/xhtml/vocab">
+<?php else: ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xml:lang="<?php echo $language->language;?>" dir="<?php echo $language->dir;?>" class="no-js">
   <head>
+<?php endif; ?>
     <title><?php echo $head_title; ?></title>
     <?php echo $head; ?>
-      
+
+    <meta charset="utf-8" />
+
     <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame  -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
@@ -27,7 +35,11 @@
 
     <!-- ______________________ HEADER _______________________ -->
 
+    <?php if ($zentropy_html5): ?>
+    <header id="header">
+    <?php else: ?>
     <div id="header">
+    <?php endif; ?>
 
       <div id="logo-title">
 	
@@ -58,11 +70,15 @@
 
       <?php echo $search_box; ?>
 
+    <?php if ($zentropy_html5): ?>
+    </header><!-- /#header -->
+    <?php else: ?>
     </div><!-- /#header -->
+    <?php endif; ?>
 
     <!-- ______________________ MAIN _______________________ -->
 
-    <div id="main" class="clearfix">
+    <div id="main" class="clearfix" role="main">
     
       <div id="content">
         <div id="content-inner" class="inner column center">
@@ -118,55 +134,100 @@
         </div><!-- /#content -->
 
         <?php if (!empty($primary_links) || !empty($secondary_links)): ?>
-          <div id="navigation" class="menu <?php if (!empty($primary_links)) { echo "with-main-menu"; } if (!empty($secondary_links)) { echo " with-sub-menu"; } ?>">
-            <?php if (!empty($primary_links)){ echo theme('links', $primary_links, array('id' => 'primary', 'class' => 'links main-menu')); } ?>
-            <?php if (!empty($secondary_links)){ echo theme('links', $secondary_links, array('id' => 'secondary', 'class' => 'links sub-menu')); } ?>
+          <?php if ($zentropy_html5): ?>
+          <nav id="navigation" role="navigation" class="menu">
+          <?php else: ?>
+          <div id="navigation" class="menu">
+          <?php endif; ?>
+          
+          <?php if (function_exists('i18nmenu_translated_tree')): ?>
+            <?php echo i18nmenu_translated_tree('primary-links'); ?>
+          <?php else: ?>
+            <?php echo menu_tree('primary-links'); ?>
+          <?php endif; ?>
+            
+          <?php if ($zentropy_html5): ?>
+          </nav><!-- /#navigation -->
+          <?php else: ?>
           </div><!-- /#navigation -->
+          <?php endif; ?>
         <?php endif; ?>
 
         <?php if ($left): ?>
+          <?php if ($zentropy_html5): ?>
+          <aside id="sidebar-first" class="column sidebar first" role="complementary">
+          <?php else: ?>
           <div id="sidebar-first" class="column sidebar first">
+          <?php endif; ?>
+
             <div id="sidebar-first-inner" class="inner">
               <?php echo $left; ?>
             </div>
-          </div>
-        <?php endif; ?><!-- /#sidebar-left -->
+
+          <?php if ($zentropy_html5): ?>
+          </aside><!-- /#sidebar-left -->
+          <?php else: ?>
+          </div><!-- /#sidebar-left -->
+          <?php endif; ?>
+        <?php endif; ?>
 
         <?php if ($right): ?>
+          <?php if ($zentropy_html5): ?>
+          <aside id="sidebar-second" class="column sidebar second" role="complementary">
+          <?php else: ?>
           <div id="sidebar-second" class="column sidebar second">
+          <?php endif; ?>
+
             <div id="sidebar-second-inner" class="inner">
               <?php echo $right; ?>
             </div>
-          </div>
-        <?php endif; ?><!-- /#sidebar-second -->
+            
+          <?php if ($zentropy_html5): ?>
+          </aside><!-- /#sidebar-right -->
+          <?php else: ?>
+          </div><!-- /#sidebar-right -->
+          <?php endif; ?>
+        <?php endif; ?>
 
       </div><!-- /#main -->
 
       <!-- ______________________ FOOTER _______________________ -->
 
       <?php if(!empty($footer_message) || !empty($footer_block)): ?>
+
+        <?php if ($zentropy_html5): ?>
+        <footer id="footer">
+        <?php else: ?>
         <div id="footer">
+        <?php endif; ?>
+        
           <div id="footer-inner">
             <?php echo $footer_message; ?>
             <?php echo $footer_block; ?>
           </div><!-- /#footer-inner -->
+          
+        <?php if ($zentropy_html5): ?>
+        </footer><!-- /#footer -->        
+        <?php else: ?>
         </div><!-- /#footer -->
+        <?php endif; ?>
+
       <?php endif; ?>
 
     </div><!-- /#page -->
     <?php echo $closure; ?>
     
-    <?php if(user_is_anonymous()): ?>
-    <!-- Google Analytics : mathiasbynens.be/notes/async-analytics-snippet -->
-    <script type="text/javascript">
-      <!--//--><![CDATA[//><!--
-      var _gaq=[['_setAccount','<?php print theme_get_setting('ga_trackingcode');?>'],['_trackPageview']];
-      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
-      g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-      s.parentNode.insertBefore(g,s)}(document,'script'));
-      //--><!]]>
-    </script>
+    <?php if(zentropy_ga_enabled()): ?>
+      <!-- Google Analytics : mathiasbynens.be/notes/async-analytics-snippet -->
+      <script type="text/javascript">
+        <!--//--><![CDATA[//><!--
+        var _gaq=[['_setAccount','<?php print theme_get_setting('zentropy_ga_trackingcode');?>'],['_trackPageview']];
+        (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(g,s)}(document,'script'));
+        //--><!]]>
+      </script>
     <?php endif;?>
-    
+
   </body>
 </html>

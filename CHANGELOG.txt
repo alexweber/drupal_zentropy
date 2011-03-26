@@ -1,5 +1,23 @@
-Zentropy 6.21, 2011-03-18
---------------------------
-- Included jQuery.tipTip
-- Improved zentropy.core.js by adding a general ie class and also adding classes to html instead of body
-- Documented CSS sample stylesheet
+6.3, 2011-03-26
+----------------
+- Brought back SASS
+- Brought back Theme Settings
+- Integrated Google Analytics (7.0 backport)
+- Added HTML5 implementation
+
+6.2.2, 2011-03-25
+----------------
+- Moved DD_belatedPNG to its own module, alogo_pngfix
+- Added Modernizr
+- Added form.css, login.css & tabs.css
+- Refactored messages styles & moved to messages.css
+- Cleaned up .htaccess tweaks (using Boost from now on)
+
+6.2.1, 2011-03-18
+----------------
+- Included jQuery.tipTip and provided basic integration
+- Updated YUI CSS Reset, Base & Fonts to 3.3.0
+- Improved zentropy.core.js CSS auxiliary classes by adding a general ie class and also adding classes to html instead of body
+- Improved comments and documentation
+- Updated README
+- Added CHANGELOG

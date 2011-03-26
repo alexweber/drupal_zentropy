@@ -18,15 +18,12 @@ function zentropy_preprocess_page(&$vars, $hook) {
 	// Classes for body element. Allows advanced theming based on context
 	// (home page, node of certain type, etc.)
 	$body_classes = array($vars['body_classes']);
-
 	if (user_access('administer blocks')) {
 	  $body_classes[] = 'admin';
 	}
-
 	if (!empty($vars['primary_links']) or !empty($vars['secondary_links'])) {
 		$body_classes[] = 'with-navigation';
 	}
-
 	if (!empty($vars['secondary_links'])) {
 		$body_classes[] = 'with-secondary';
 	}
@@ -39,6 +36,7 @@ function zentropy_preprocess_page(&$vars, $hook) {
 #			$body_classes[] = 'tax-' . eregi_replace('[^a-z0-9]', '-', $term->name);
 #		}
 #	}
+
 	if (!$vars['is_front']) {
 		// Add unique classes for each page and website section
 		$path = drupal_get_path_alias($_GET['q']);
@@ -73,10 +71,16 @@ function zentropy_preprocess_page(&$vars, $hook) {
 	*/
 
 	if ($vars['node']->type != "") {
-	  $vars['template_files'][] = "page-node-" . $vars['node']->type;
+	  $vars['template_files'][] = "page-type-" . $vars['node']->type;
 	}
 
+  if ($vars['node']->nid != "") {
+    $vars['template_files'][] = "page-node-" . $vars['node']->nid;
+  }
+
 	$vars['body_classes'] = implode(' ', $body_classes); // Concatenate with spaces
+	
+  _zentropy_preprocess($vars);
 }
 
 /*
@@ -117,11 +121,9 @@ function zentropy_preprocess_node(&$vars, $hook) {
   // Class for node type: "node-type-page", "node-type-story", "node-type-my-custom-type", etc.
   $classes[] = zentropy_id_safe('node-type-' . $vars['type']);
   $vars['classes'] = implode(' ', $classes); // Concatenate with spaces
+  $vars['template_files'][] = zentropy_id_safe('node-type-' . $vars['type']);
   
-  // Add template suggestion for rendering nodes
-	if ($vars['node']->type != "") {
-	  $vars['template_files'][] = "node-" . $vars['node']->type;
-	}
+  _zentropy_preprocess($vars);
 }
 
 /*
@@ -353,4 +355,39 @@ function zentropy_breadcrumb($breadcrumb) {
   if (!empty($breadcrumb)) {
     return '<div class="breadcrumb">'. implode(' &raquo; ', $breadcrumb) .'</div>';
   }
+}
+
+/**
+ * Determine whether to output Google Analytics tracking code
+ *
+ * @return bool
+ */
+function zentropy_ga_enabled(){ 
+  if (!theme_get_setting('zentropy_ga_enable')) {
+    return false;
+  }
+  
+  global $user;
+  $roles_orig = theme_get_setting('zentropy_ga_trackroles');
+  
+  // theme_get_setting() doesn't allow specifying default values so provide one here
+  if (!is_array($roles_orig)) {
+    $roles_orig = array();
+  }
+  
+  // remove roles with permission
+  $roles = array_filter($roles_orig);
+  
+  // get intersection of user's roles and roles without permission
+  $intersect = array_intersect(array_keys($user->roles), array_keys($roles));
+  
+  return empty($intersect);
+}
+
+/**
+ * Add theme settings to $vars
+ */
+function 	_zentropy_preprocess(&$vars) {
+	$vars['zentropy_html5'] = theme_get_setting('zentropy_html5');
+	
 }

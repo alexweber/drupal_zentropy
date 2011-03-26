@@ -3,7 +3,8 @@ description = Based on Basic, Zentropy is the most awesome starter theme since, 
 screenshot = screenshot.jpg
 core = "6.x"
 project = "zentropy"
-version = "6.x-2.1"
+engine = phptemplate
+version = "6.x-2.2"
 
 regions[above_top] = Above Content Top
 regions[content_top] = Content top
@@ -24,11 +25,16 @@ features[] = secondary_links
 
 stylesheets[all][] = css/yui.css
 stylesheets[all][] = css/layout.css
+stylesheets[all][] = css/tabs.css
+stylesheets[all][] = css/messages.css
+stylesheets[all][] = css/form.css
 ;stylesheets[all][] = css/libs/jquery.colorbox.css
-;stylesheets[all][] = css/libs/tipTip.css
-stylesheets[all][] = css/style.css
+;stylesheets[all][] = css/libs/jquery.tipTip.css
+stylesheets[all][] = css/demo.css
+;stylesheets[all][] = css/ie.css
 stylesheets[all][] = css/print.css
 
+scripts[] = js/libs/modernizr-1.7.min.js
 ;scripts[] = js/libs/jquery.colorbox.min.js
 ;scripts[] = js/libs/jquery.easing.1.3.min.js
 ;scripts[] = js/libs/jquery.hoverIntent.min.js
@@ -37,3 +43,8 @@ stylesheets[all][] = css/print.css
 scripts[] = js/zentropy.core.js
 ;scripts[] = js/zentropy.image.js
 ;scripts[] = js/zentropy.menu.js
+
+settings[zentropy_html5] = 0
+settings[zentropy_ga_enable] = 0
+settings[zentropy_ga_trackingcode] = ''
+settings[zentropy_ga_trackroles] = ''
