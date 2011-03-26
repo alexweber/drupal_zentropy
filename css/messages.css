@@ -1,0 +1,43 @@
+/**
+ * @file message styles
+ */
+div.messages {
+  /*	padding: 9px 9px 9px 41px;*/
+  /*	margin: 0 0 1em 0;*/
+  margin: 0 auto 1em;
+  padding: 2% 2% 2% 7%;
+  width: 90%;
+  background: url("../images/icons/info.png") center left no-repeat #527feb;
+  background-color: rgba(82, 127, 235, 0.7);
+  text-shadow: 0px 1px 1px #ddd;
+  color: #fff;
+  -moz-box-shadow: 0 0 6px #222222;
+  -webkit-box-shadow: 0 0 6px #222222;
+  box-shadow: 0 0 6px #222222;
+  border: 0 none; }
+
+div.messages a {
+  color: #fff !important; }
+
+div.messages a:hover {
+  text-shadow: 0 0 0; }
+
+div.messages.warning {
+  color: #333;
+  background: url("../images/icons/warning.png") center left no-repeat #ebee66;
+  background-color: rgba(235, 238, 102, 0.7);
+  -moz-box-shadow: 0 0 6px #666666;
+  -webkit-box-shadow: 0 0 6px #666666;
+  box-shadow: 0 0 6px #666666;
+  text-shadow: 0px 1px 1px #fff; }
+
+div.messages.warning a {
+  color: #333 !important; }
+
+div.messages.error {
+  background: url("../images/icons/error.png") center left no-repeat #dd5522;
+  background-color: rgba(221, 85, 34, 0.7); }
+
+div.messages.status {
+  background: url("../images/icons/ok.png") center left no-repeat #09bb00;
+  background-color: rgba(9, 187, 0, 0.7); }

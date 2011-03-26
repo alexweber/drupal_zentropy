@@ -1,0 +1,345 @@
+// Import mixins and variables for use in sass document.
+@import "_variables.scss";
+@import "_mixins.scss";
+
+/**
+ * @file Layout styles
+ * Don't change this unless you know what you are doing!
+ */
+
+
+/** Clear Floats Without Structural Markup: 
+---------------------------------
+*  http://www.positioniseverything.net/easyclearing.html
+*/
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+  zoom: 1;
+}
+
+.clearfix { display: inline-block; }
+
+/* Hides from IE-mac \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* End hide from IE-mac */
+
+/* clear classes */
+
+.clearleft, .clearl, .cleft { clear: left; }
+.clearright, .clearr, .cright { clear: right; }
+.clear, .clearboth, .clearall{ clear: both; }
+
+/* Float classes */
+
+.floatleft, .fleft, .floatl { float: left; margin: 0 10px 5px 0; }
+.floatright, .fright, .floatr { float: right; margin: 0 0 5px 10px; }
+
+/** "Skip to Main Content" link
+---------------------------------
+*  This link useful for both visually impaired people and those with mobility impairments
+*  who cannot use a mouse. http://www.webaim.org/techniques/css/invisiblecontent/
+*/
+
+#skip a, #skip a:hover, #skip a:visited {
+  position: absolute;
+  left:-10000px;
+  top:auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+#skip a:active, #skip a:focus {
+  position: static;
+  width: auto;
+  height: auto;
+}
+
+/** Hidden class
+-----------------
+*	 This is used for hiding content visually but displaying it to screen readers
+*  http://webaim.org/techniques/css/invisiblecontent/
+*/
+.hidden {
+	position:absolute;
+	left:-10000px;
+	top:auto;
+	width:1px;
+	height:1px;
+	overflow:hidden;
+}
+
+/* bug fix with views 2 edit links */
+
+div.view div.views-admin-links {
+	width:auto;
+}
+
+/** Rollover edit links for blocks */
+
+div.block {
+  position: relative;
+}
+
+div.block .edit {
+  display: none;
+  position: absolute;
+  right: -20px;
+  top: -5px;
+  z-index: 40;
+  padding: 3px 8px 0;
+  font-size: 10px;
+  line-height:16px;
+  background-color: #fff;
+  border:1px solid #ccc;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  -moz-box-shadow: 0 1px 3px #888;
+  -webkit-box-shadow: 0 1px 3px #888;
+  box-shadow: 0 1px 3px #888;
+}
+
+div.block .edit a {
+  display:block;
+  border:0;
+  padding:0;
+  margin:0;
+}
+
+div.block:hover .edit {
+  display: block;
+}
+
+/** Layout
+---------------------------------
+*  Using a negative margin technique, adapted from ZEN. The page is loaded by this order:
+*  
+*  1. Header
+*  2. Content
+*  3. Navigation menus
+*  4. Sidebar Left
+*  5. Sideabr Right
+*	
+*/
+
+#page {
+  @if $site-width == liquid {
+	  margin: 0;
+  } @else {
+    width: 960px;
+    margin: 0 auto;  
+  }
+}
+
+/** LAYOUT RULES
+---------------------------------
+*  do not change if you're not sure you know what you're doing
+*/
+
+@if $sidebar == 1 {
+  #content {
+    float: left;
+    width: 100%;
+    margin-right: -100%;
+    padding: 0;
+  }
+  .sidebar {
+    float: left;
+  }
+  #sidebar-second {
+    float: right;
+  }
+} @else {
+  #content {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+#footer {
+  float: none;
+}
+
+/* Layout Helpers */
+
+#header, #footer, .breadcrumb, .node {
+  clear: both;
+}
+
+@if $sidebar == 1 {
+
+  /** Sidebars width
+  ---------------------------------
+  *  Changing the width of the sidebars is dead easy, just change the
+  *  values below corresponding to the sidebar you want to modify.
+  *  Make sure you keep negative values as negative values.
+  *  For example, if I want to increase the width of the left sidebar
+  *  to 300px, I would have to change each '190' to '300'.
+  */
+
+  .two-sidebars .center,
+  .sidebar-left .center {
+    margin-left: $sidebar-left;     /* LEFT value */
+  }
+  #sidebar-first {
+    width: $sidebar-left;           /* LEFT value */
+	  margin-right: -$sidebar-left;    /* negative LEFT value */
+  }
+  .two-sidebars .center,
+  .sidebar-right .center {
+    margin-right: $sidebar-right;    /* RIGHT value */
+  }
+  #sidebar-second {
+    width: $sidebar-right;           /* RIGHT value */
+  }
+
+}
+
+@if $nav == 1 {
+  /** Navigation styles
+  ---------------------------------
+  *  The navigation is loaded after the content, so we need to make space
+  *  for it, equal to its height, so if you change the height of the navigation,
+  *  remember to adapt the margin top of the content and sidebars.
+  */
+
+  @if $sidebar == 0 {
+    #navigation {
+      margin-left: 0;
+    }
+  } @else {
+    #navigation {
+      float: left;
+      margin-left: 0;
+      margin-right: -100%;
+      padding: 0;
+      width: 100%;
+    }  
+  }
+  
+  .with-navigation #content,
+  .with-navigation .sidebar {
+    margin-top: 40px;        /* Navigation Height */
+  }
+  #navigation {
+    height: 40px;            /* Navigation Height */
+  }
+}
+
+body {
+	margin: 0;
+  /*
+   * Setting up font size, leading and font family
+   * http://www.markboulton.co.uk/journal/comments/five-simple-steps-to-better-typography
+   */
+  font: 13px/1.5em "Helvetica Neue", Helvetica, Arial, sans-serif;
+	margin: 0;
+}
+
+/* Titles  */
+
+h1, h2, h3, h4, h5, h6 {
+	line-height:1.3em;
+}
+
+h1 {
+	font-size: 2.2em;
+	font-weight:300;
+	padding: 0 0 0.5em;
+	margin: 0;
+}
+
+h2 {font-size:1.6em;font-weight:300;margin-bottom:0.75em;}
+h3 {font-size:1.3em;margin-bottom:1em;}
+h4 {font-size:1.2em;margin-bottom:0.8em;}
+h5 {font-size:1.1em;font-weight:600;margin-bottom:0;}
+h6 {font-size:1em;font-weight:bold;}
+
+/* Paragraph styles */
+
+p {
+  margin-top: 1em;
+}
+
+/* List Styles  */
+
+ul, ol {
+  margin-left: 0;
+  padding-left: 2em;
+}
+
+/* Table Styles  */
+
+table {
+	width: 99%;
+}
+
+tr.even td, tr.odd td {
+	padding: 10px 5px;
+}
+
+tr.odd {
+	background-color: #fff;
+}
+
+/* List Styles */
+
+ul,
+ul ul,
+ul ul ul,
+ul ul ul ul,
+ol,
+ol ol,
+ol ol ol,
+ul li,
+ol li {
+	list-style: none;
+}
+
+/* Abbreviation */
+
+abbr {
+	border-bottom: 1px dotted $text-light;
+	cursor: help;
+	white-space: nowrap;
+}
+
+/* UI improvments  */
+
+#edit-title{
+	font-size: 24px;
+}
+
+#system-themes-form img{
+	width:100px;
+}
+
+.form-item .description{
+	font-style: italic;
+	line-height: 1.2em;
+	font-size: 0.8em;
+	margin-top: 5px;
+	color: $text-light;
+}
+
+#edit-delete{
+	color:#c00;
+}
+
+/* Link styles */
+
+a {
+  color: $link;
+  text-decoration: none;
+  
+  &:hover, &:active {
+    text-decoration: underline;
+  }
+}

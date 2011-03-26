@@ -1,0 +1,15 @@
+/**
+ * @file Demo styles
+ *
+ * These rules make regions easier to see to get rid of them either comment/remove them from here
+ * or override them in another stylesheet
+ */
+
+#main { background: #ccc; }
+#content { background: #eee; }
+#sidebar-first { background: #ccf; }
+#sidebar-second { background: #fcc; }
+#main-menu { background: #ffc; }
+#secondary-menu { background: #fcf; }
+#header { background: #cff; }
+#footer { background: #cfc; }

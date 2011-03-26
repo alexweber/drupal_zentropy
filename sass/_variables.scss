@@ -1,0 +1,31 @@
+// Variables
+// ---------
+// Use the same color all over the place? Need to do 
+// some math with height and width and text size? 
+// Sass supports variables as well as basic math 
+// operations and many useful functions.  
+//
+// For complete documentation: 
+// http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#variables_
+//
+// Available functions:
+// http://sass-lang.com/docs/yardoc/Sass/Script/Functions.html
+
+$text: #222;
+$text-light: #262626;
+
+$input-color: #747474;
+
+$link: #336699;
+$link-dark: #113A63;
+$link-dark-hover: #fff;
+
+//$site-width: liquid
+$site-width: 960px;
+
+$sidebar: 1; // site has sidebars?
+$sidebar-left: 190px;
+$sidebar-right: 200px;
+
+$nav: 1; // site has navigation?
+$nav-height: 40px; // navigation menu height

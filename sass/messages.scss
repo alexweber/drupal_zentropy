@@ -1,0 +1,51 @@
+// Import mixins and variables for use in sass document.
+@import "_variables.scss";
+@import "_mixins.scss";
+
+/**
+ * @file message styles
+ */
+ 
+div.messages {
+/*	padding: 9px 9px 9px 41px;*/
+/*	margin: 0 0 1em 0;*/
+  margin: 0 auto 1em;
+  padding: 2% 2% 2% 7%;
+  width: 90%;
+	background: url('../images/icons/info.png') center left no-repeat rgb(82, 127, 235);
+	background-color: rgba(82, 127, 235, 0.7);
+	text-shadow: 0px 1px 1px #ddd;
+	color: #fff;
+  @include box-shadow(#222, 0, 0, 6px);
+  border: 0 none;
+}
+
+div.messages a {
+  color: #fff !important;
+}
+
+div.messages a:hover {
+  text-shadow: 0 0 0;
+}
+
+div.messages.warning {
+	color: #333;
+	background: url('../images/icons/warning.png') center left no-repeat rgb(235, 238, 102);
+	background-color: rgba(235, 238, 102, 0.7);
+  @include box-shadow(#666, 0, 0, 6px);
+  text-shadow: 0px 1px 1px #fff;
+}
+
+div.messages.warning a {
+  color: #333 !important;
+}
+
+div.messages.error {
+  background: url('../images/icons/error.png') center left no-repeat rgb(221, 85, 34);
+	background-color: rgba(221, 85, 34, 0.7);
+}
+
+div.messages.status {
+  background: url('../images/icons/ok.png') center left no-repeat rgb(9, 187, 0);
+	background-color: rgba(9, 187, 0, 0.7);
+}
