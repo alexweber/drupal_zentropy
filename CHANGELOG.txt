@@ -1,3 +1,7 @@
+6.3.1, 2011-03-29
+-----------------
+- Fixed checkbox state in theme settings
+
 6.3, 2011-03-26
 ----------------
 - Brought back SASS
