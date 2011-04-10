@@ -4,10 +4,10 @@ screenshot = screenshot.jpg
 core = "6.x"
 project = "zentropy"
 engine = phptemplate
-version = "6.x-2.2"
+version = "6.x-3.0"
 
 regions[header] = Header
-regions[body-top] = Body Top
+regions[body_top] = Body Top
 regions[left] = First sidebar
 regions[right] = Second sidebar
 regions[content_top] = Content top
