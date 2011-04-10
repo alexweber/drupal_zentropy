@@ -10,7 +10,7 @@
     <?php else: ?>
       <div class="comment-header">
     <?php endif; ?>
-    
+
       <?php if ($title): ?>
         <h3 class="title"><?php echo $title ?></h3>
       <?php endif; ?>
@@ -51,8 +51,8 @@
         <div class="links">
           <?php echo $links; ?>
         </div><!-- /.links -->
-      <?php endif; ?>  
-    
+      <?php endif; ?>
+
     <?php if ($zentropy_html5): ?>
       </footer>
     <?php else: ?>
@@ -64,4 +64,4 @@
 </article><!-- /.comment -->
 <?php else: ?>
 </div><!-- /.comment -->
-<?php endif: ?>
+<?php endif; ?>

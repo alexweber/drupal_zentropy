@@ -2,12 +2,10 @@
  * Zentropy javascript core
  */
 
-// Add String.trim() method
 String.prototype.trim = function(){
 	return this.replace(/\s+$/, '').replace(/^\s+/, '');
 }
 
-// Add Array.indexOf() method
 if (!Array.prototype.indexOf) {
   Array.prototype.indexOf = function (obj, fromIndex) {
     if (fromIndex == null) {
@@ -15,7 +13,7 @@ if (!Array.prototype.indexOf) {
     } else if (fromIndex < 0) {
       fromIndex = Math.max(0, this.length + fromIndex);
     }
-    for (var i = fromIndex, j = this.length; i < j; i++) {
+    for (var i = fromIndex, j = this.length; i < j; ++i) {
       if (this[i] === obj){
         return i;
       }
@@ -25,7 +23,9 @@ if (!Array.prototype.indexOf) {
 }
 
 // jQuery Browser Detect Tweak For IE7
-jQuery.browser.version = jQuery.browser.msie && parseInt(jQuery.browser.version) == 6 && window["XMLHttpRequest"] ? "7.0" : jQuery.browser.version;
+jQuery.browser.version = jQuery.browser.msie && parseInt(jQuery.browser.version) == 6 && window["XMLHttpRequest"]
+  ? "7.0"
+  : jQuery.browser.version;
 
 // Console.log wrapper to avoid errors when firebug is not present
 // usage: log('inside coolFunc',this,arguments);

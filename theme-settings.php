@@ -21,14 +21,14 @@ function zentropy_settings($saved_settings, $subtheme_defaults = array()) {
   $form['zentropy_html']['zentropy_html5'] = array(
    '#type'  => 'checkbox',
    '#title' => t('Enable HTML5'),
-   '#default_value' => $settings['zentropy_html5'],
+   '#default_value' => theme_get_setting('zentropy_html5'),
   );
 
   /**
    * Google Analytics settings
    */
   $roles_all = user_roles();
-  $roles_tracked = $settings['zentropy_ga_trackroles'];
+  $roles_tracked = theme_get_setting('zentropy_ga_trackroles');
 
   $form['zentropy_ga'] = array(
    '#type' => 'fieldset',
@@ -37,12 +37,12 @@ function zentropy_settings($saved_settings, $subtheme_defaults = array()) {
   $form['zentropy_ga']['zentropy_ga_enable'] = array(
    '#type'  => 'checkbox',
    '#title' => t('Enable Google Analytics'),
-   '#default_value' => $settings['zentropy_ga_enable'],
+   '#default_value' => theme_get_setting('zentropy_ga_enable'),
   );
   $form['zentropy_ga']['zentropy_ga_trackingcode'] = array(
    '#type'  => 'textfield',
    '#title' => t('Tracking code'),
-   '#default_value' => $settings['zentropy_ga_trackingcode'],
+   '#default_value' => theme_get_setting('zentropy_ga_trackingcode'),
   );
   $form['zentropy_ga']['zentropy_ga_trackroles'] = array(
     '#type' => 'checkboxes',

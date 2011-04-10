@@ -1,16 +1,34 @@
-6.3.1, 2011-03-29
+6.3.0, 2011-04-09
+-----------------
+- Major region refactor
+  - Removed above_top
+  - Added body_top
+  - Added outside
+- Updated page.tpl.php to use new regions
+- No longer supporting Admin theming - deferred to Rubik
+
+6.2.5, 2011-04-06
+-----------------
+- Added Floating Tabs to theme settings & templates
+- Adeded CSS3Pie 0.4
+
+6.2.4, 2011-03-29
 -----------------
 - Fixed checkbox state in theme settings
+- Added Webdrop HTML signature to page.tpl.php
+- Added Webdrop info to humans.txt
+- Removed DD_belatedPNG from zentropy.core.js
 
-6.3, 2011-03-26
-----------------
+6.2.3, 2011-03-26
+-----------------
 - Brought back SASS
 - Brought back Theme Settings
 - Integrated Google Analytics (7.0 backport)
 - Added HTML5 implementation
+- Included humans.txt
 
 6.2.2, 2011-03-25
-----------------
+-----------------
 - Moved DD_belatedPNG to its own module, alogo_pngfix
 - Added Modernizr
 - Added form.css, login.css & tabs.css
@@ -18,7 +36,7 @@
 - Cleaned up .htaccess tweaks (using Boost from now on)
 
 6.2.1, 2011-03-18
-----------------
+-----------------
 - Included jQuery.tipTip and provided basic integration
 - Updated YUI CSS Reset, Base & Fonts to 3.3.0
 - Improved zentropy.core.js CSS auxiliary classes by adding a general ie class and also adding classes to html instead of body

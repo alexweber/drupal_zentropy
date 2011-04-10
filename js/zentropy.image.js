@@ -1,6 +1,7 @@
 /**
  * Image handling functions
  */
+
 Zentropy.image = { _cache : [] };
 
 // preload images
