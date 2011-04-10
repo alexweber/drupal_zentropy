@@ -6,6 +6,9 @@
   - Added outside
 - Updated page.tpl.php to use new regions
 - No longer supporting Admin theming - deferred to Rubik
+- Added breadcrumb settings
+  - Separator
+  - Hide if only front
 
 6.2.5, 2011-04-06
 -----------------

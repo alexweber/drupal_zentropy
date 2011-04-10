@@ -11,7 +11,9 @@ function zentropy_settings($saved_settings, $subtheme_defaults = array()) {
   //Forms using FAPI
   $form = array();
 
-  /* HTML 5 */
+  /*
+   * HTML 5
+   */
 
   $form['zentropy_html'] = array(
    '#type' => 'fieldset',
@@ -24,7 +26,27 @@ function zentropy_settings($saved_settings, $subtheme_defaults = array()) {
    '#default_value' => theme_get_setting('zentropy_html5'),
   );
 
-  /**
+  /*
+   * Breadcrumb settings
+   */
+  $form['zentropy_breadcrumb'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Breadcrumb'),
+  );
+
+  $form['zentropy_breadcrumb']['zentropy_breadcrumb_hideonlyfront'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Hide the breadcrumb if the breadcrumb only contains the link to the front page.'),
+    '#default_value' => theme_get_setting('zentropy_breadcrumb_hideonlyfront'),
+  );
+
+  $form['zentropy_breadcrumb']['zentropy_breadcrumb_separator'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Breadcrumb separator'),
+    '#default_value' => theme_get_setting('zentropy_breadcrumb_separator'),
+  );
+
+  /*
    * Google Analytics settings
    */
   $roles_all = user_roles();

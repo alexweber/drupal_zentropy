@@ -125,30 +125,32 @@
         <?php endif; ?>
 
         <div id="content">
+          <div id="content-inner" class="inner column center">
 
-          <?php if ($content_top): ?>
-            <div id="content-top">
-              <?php echo $content_top; ?>
-            </div><!-- /#content-top -->
-          <?php endif; ?>
+            <?php if ($content_top): ?>
+              <div id="content-top">
+                <?php echo $content_top; ?>
+              </div><!-- /#content-top -->
+            <?php endif; ?>
 
-          <div id="content-area">
-            <?php echo $content; ?>
+            <div id="content-area">
+              <?php echo $content; ?>
 
-            <?php if ($content_area): ?>
-              <?php echo $content_area;?>
-            <?php endif;?>
+              <?php if ($content_area): ?>
+                <?php echo $content_area;?>
+              <?php endif;?>
 
-          </div><!-- /#content-area -->
+            </div><!-- /#content-area -->
 
-          <?php echo $feed_icons; ?>
+            <?php echo $feed_icons; ?>
 
-          <?php if ($content_bottom): ?>
-            <div id="content-bottom">
-              <?php echo $content_bottom; ?>
-            </div><!-- /#content-bottom -->
-          <?php endif; ?>
+            <?php if ($content_bottom): ?>
+              <div id="content-bottom">
+                <?php echo $content_bottom; ?>
+              </div><!-- /#content-bottom -->
+            <?php endif; ?>
 
+            </div><!-- /#content-inner -->
           </div><!-- /#content -->
 
           <?php if ($left): ?>

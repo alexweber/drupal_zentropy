@@ -49,3 +49,5 @@ settings[zentropy_html5] = 0
 settings[zentropy_ga_enable] = 0
 settings[zentropy_ga_trackingcode] = ''
 settings[zentropy_ga_trackroles] = ''
+settings[zentropy_breadcrumb_hideonlyfront] = 1
+settings[zentropy_breadcrumb_separator] = '&raquo;'
