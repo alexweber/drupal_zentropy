@@ -1,4 +1,4 @@
-6.3.0, 2011-04-09
+6.3.0, 2011-04-13
 -----------------
 - Major region refactor
   - Removed above_top
@@ -9,6 +9,8 @@
 - Added breadcrumb settings
   - Separator
   - Hide if only front
+- Lots of CSS enhancements
+- Lots of bugfixes
 
 6.2.5, 2011-04-06
 -----------------

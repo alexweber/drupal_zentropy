@@ -35,6 +35,26 @@
     <div id="header">
     <?php endif; ?>
 
+      <?php if (!empty($secondary_links)): ?>
+        <?php if ($zentropy_html5): ?>
+        <nav id="secondary-navigation" role="navigation" class="menu">
+        <?php else: ?>
+        <div id="secondary-navigation" class="menu">
+        <?php endif; ?>
+
+        <?php if (function_exists('i18nmenu_translated_tree')): ?>
+          <?php echo i18nmenu_translated_tree('secondary-links'); ?>
+        <?php else: ?>
+          <?php echo menu_tree('secondary-links'); ?>
+        <?php endif; ?>
+
+        <?php if ($zentropy_html5): ?>
+        </nav><!-- /#navigation -->
+        <?php else: ?>
+        </div><!-- /#navigation -->
+        <?php endif; ?>
+      <?php endif; ?>
+
       <div id="logo-title">
 
         <?php if (!empty($logo)): ?>
@@ -72,7 +92,7 @@
 
     <div id="main" class="clearfix" role="main">
 
-      <?php if (!empty($primary_links) || !empty($secondary_links)): ?>
+      <?php if (!empty($primary_links)): ?>
         <?php if ($zentropy_html5): ?>
         <nav id="navigation" role="navigation" class="menu">
         <?php else: ?>

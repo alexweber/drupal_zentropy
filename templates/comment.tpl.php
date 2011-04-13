@@ -1,7 +1,7 @@
 <?php if ($zentropy_html5): ?>
-<article class="<?php echo $classes .' '. $zebra; ?> clearfix">
+<article class="<?php echo $classes, ' ', $zebra; ?> clearfix">
 <?php else: ?>
-<div class="<?php echo $classes .' '. $zebra; ?> clearfix">
+<div class="<?php echo $classes, ' ', $zebra; ?> clearfix">
 <?php endif; ?>
   <div class="comment-inner">
 
