@@ -275,7 +275,7 @@ function zentropy_menu_item_link($link) {
   // If an item is a LOCAL TASK, render it as a tab
   if ($link['type'] & MENU_IS_LOCAL_TASK) {
     $link['title'] = '<span class="tab">' . check_plain($link['title']) . '</span>';
-    $link['localized_options']['html'] = true;
+    $link['localized_options']['html'] = TRUE;
   }
 
   return l($link['title'], $link['href'], $link['localized_options']);
@@ -366,7 +366,7 @@ function zentropy_breadcrumb($breadcrumb) {
  */
 function zentropy_ga_enabled() {
   if (!theme_get_setting('zentropy_ga_enable')) {
-    return false;
+    return FALSE;
   }
 
   global $user;
@@ -384,6 +384,23 @@ function zentropy_ga_enabled() {
   $intersect = array_intersect(array_keys($user->roles), array_keys($roles));
 
   return empty($intersect);
+}
+
+/**
+ * Determine whether to show floating tabs
+ *
+ * @return bool
+ */
+function zentropy_tabs_float() {
+  $float = (bool) theme_get_setting('zentropy_tabs_float');
+  $float_node = (bool) theme_get_setting('zentropy_tabs_node');
+  $is_node = (arg(0) === 'node' && is_numeric(arg(1)));
+  
+  if ($float) {
+    return ($float_node) ? $is_node : TRUE;
+  }
+  
+  return FALSE;
 }
 
 /**

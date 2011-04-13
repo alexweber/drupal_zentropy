@@ -22,7 +22,7 @@
 }
 
 // Box shadows
-@mixin box-shadow($c, $x: 0px, $y: 0px, $z: 4px) {
+@mixin box-shadow($c: #222, $x: 0px, $y: 0px, $z: 4px) {
   -moz-box-shadow: $x $y $z $c;
   -webkit-box-shadow: $x $y $z $c;
   box-shadow: $x $y $z $c;

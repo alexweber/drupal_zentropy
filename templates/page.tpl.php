@@ -114,7 +114,7 @@
 
       <div id="body">
 
-        <?php if ($breadcrumb || $mission || $messages || $help || $tabs): ?>
+        <?php if ($breadcrumb || $mission || $messages || $help || ($tabs && !zentropy_tabs_float())): ?>
           <div id="content-header">
 
             <?php echo $breadcrumb; ?>
@@ -127,7 +127,7 @@
 
             <?php echo $help; ?>
 
-            <?php if ($tabs): ?>
+            <?php if ($tabs && !zentropy_tabs_float()): ?>
               <div class="tabs"><?php echo $tabs; ?></div>
             <?php endif; ?>
 
@@ -254,9 +254,13 @@
 
     </div><!-- /#page -->
 
-	  <?php if ($outside): ?>
+	  <?php if ($outside || ($tabs && zentropy_tabs_float())): ?>
 	  <div id="outside-region">
 	    <?php echo $outside; ?>
+	    
+	    <?php if ($tabs && zentropy_tabs_float()): ?>
+	      <div id="floating-tabs"><?php echo $tabs; ?></div>
+	    <?php endif; ?>
 	  </div><!-- /#outside-region -->
 	  <?php endif; ?>
 

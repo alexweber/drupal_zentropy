@@ -73,12 +73,9 @@ ul.secondary li a:hover {
 }
 
 ul.primary li a:hover,
-ul.secondary li a:hover {
+ul.secondary li a:hover,
+ul.secondary li.active a {
   color: #336699;
-}
-
-ul.secondary li.active a:hover {
-  color: #113a63;
 }
 
 ul.primary li.active a,
@@ -164,4 +161,47 @@ ul.secondary li.active a {
 .vertical-tabs ul.vertical-tabs-list .summary {
   line-height: normal;
   margin-bottom: 0;
+}
+
+/* Floating Tabs */
+#floating-tabs {
+  position: fixed;
+  top: 20%;
+  left: 0;
+}
+#floating-tabs ul a {
+  display: block;
+}
+#floating-tabs ul.primary {
+  margin: 0;
+  padding: 0;
+  border-bottom: 0 none;
+  -moz-box-shadow: 0px 0px 4px #222222;
+  -webkit-box-shadow: 0px 0px 4px #222222;
+  box-shadow: 0px 0px 4px #222222;
+}
+#floating-tabs ul.primary li {
+  display: block;
+  margin: 0;
+  border-top: 0 none;
+}
+#floating-tabs ul.secondary {
+  padding: 0;
+  border-bottom: 0 none;
+  position: relative;
+  left: 10px;
+  top: 8px;
+  -moz-box-shadow: 0px 0px 4px #222222;
+  -webkit-box-shadow: 0px 0px 4px #222222;
+  box-shadow: 0px 0px 4px #222222;
+  background: #fff;
+}
+#floating-tabs ul.secondary li {
+  line-height: 1.4em;
+  display: block;
+  padding: 0 4px;
+  margin: 0;
+}
+#floating-tabs ul.secondary a.active {
+  border-bottom: 0;
 }

@@ -52,3 +52,5 @@ settings[zentropy_ga_trackingcode] = ''
 settings[zentropy_ga_trackroles] = ''
 settings[zentropy_breadcrumb_separator] = '»'
 settings[zentropy_breadcrumb_hideonlyfront] = 1
+settings[zentropy_tabs_float] = 0
+settings[zentropy_tabs_node] = 1

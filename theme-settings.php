@@ -33,6 +33,26 @@ function zentropy_settings($saved_settings, $subtheme_defaults = array()) {
   );
 
   /*
+   * Floating tabs
+   */
+   $form['zentropy_tabs'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Tabs'),
+   );
+   
+   $form['zentropy_tabs']['zentropy_tabs_float'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Enable floating tabs'),
+    '#default_value' => $settings['zentropy_tabs_float'],
+   );
+   
+   $form['zentropy_tabs']['zentropy_tabs_node'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Only for nodes'),
+    '#default_value' => $settings['zentropy_tabs_node'],
+   );
+
+  /*
    * Breadcrumb settings
    */
   $form['zentropy_breadcrumb'] = array(
