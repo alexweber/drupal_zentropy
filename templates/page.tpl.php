@@ -94,14 +94,10 @@
 
       <div id="body">
 
-        <?php if ($breadcrumb || $title || $mission || $messages || $help || $tabs): ?>
+        <?php if ($breadcrumb || $mission || $messages || $help || $tabs): ?>
           <div id="content-header">
 
             <?php echo $breadcrumb; ?>
-
-            <?php if ($title): ?>
-              <h1 class="title"><?php echo $title; ?></h1>
-            <?php endif; ?>
 
             <?php if ($mission): ?>
               <div id="mission"><?php echo $mission; ?></div>
@@ -133,7 +129,12 @@
               </div><!-- /#content-top -->
             <?php endif; ?>
 
+            <?php if ($title): ?>
+              <h1 class="title"><?php echo $title; ?></h1>
+            <?php endif; ?>
+
             <div id="content-area">
+
               <?php echo $content; ?>
 
               <?php if ($content_area): ?>
