@@ -347,9 +347,9 @@ function zentropy_breadcrumb($breadcrumb) {
   if (theme_get_setting('zentropy_breadcrumb_hideonlyfront')) {
     $condition = count($breadcrumb) > 1;
   } else {
-    $condition = empty($breadcrumb);
+    $condition = !empty($breadcrumb);
   }
-
+  
   $separator = theme_get_setting('zentropy_breadcrumb_separator');
 
   if ($condition) {
