@@ -143,7 +143,9 @@
 
             </div><!-- /#content-area -->
 
-            <?php echo $feed_icons; ?>
+            <?php if (theme_get_setting('zentropy_feed_icons')): ?>
+              <?php echo $feed_icons; ?>
+            <?php endif; ?>
 
             <?php if ($content_bottom): ?>
               <div id="content-bottom">

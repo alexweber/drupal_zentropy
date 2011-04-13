@@ -12,18 +12,24 @@ function zentropy_settings($saved_settings, $subtheme_defaults = array()) {
   $form = array();
 
   /*
-   * HTML 5
+   * General Settings
    */
 
   $form['zentropy_html'] = array(
    '#type' => 'fieldset',
-   '#title' => t('HTML'),
+   '#title' => t('General'),
   );
 
-  $form['zentropy_html']['zentropy_html5'] = array(
+  $form['zentropy_general']['zentropy_html5'] = array(
    '#type'  => 'checkbox',
    '#title' => t('Enable HTML5'),
    '#default_value' => theme_get_setting('zentropy_html5'),
+  );
+  
+  $form['zentropy_general']['zentropy_feed_icons'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Display Feed Icons'),
+    '#default_value' => theme_get_setting('zentropy_feed_icons'),
   );
 
   /*

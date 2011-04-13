@@ -46,6 +46,7 @@ scripts[] = js/zentropy.core.js
 ;scripts[] = js/zentropy.menu.js
 
 settings[zentropy_html5] = 0
+settings[zentropy_feed_icons] = 0
 settings[zentropy_ga_enable] = 0
 settings[zentropy_ga_trackingcode] = ''
 settings[zentropy_ga_trackroles] = ''
