@@ -12,37 +12,46 @@
   height: 0;
   clear: both;
   visibility: hidden;
-  zoom: 1; }
+  zoom: 1;
+}
 
 .clearfix {
-  display: inline-block; }
+  display: inline-block;
+}
 
 /* Hides from IE-mac \*/
 * html .clearfix {
-  height: 1%; }
+  height: 1%;
+}
 
 .clearfix {
-  display: block; }
+  display: block;
+}
 
 /* End hide from IE-mac */
 /* clear classes */
 .clearleft, .clearl, .cleft {
-  clear: left; }
+  clear: left;
+}
 
 .clearright, .clearr, .cright {
-  clear: right; }
+  clear: right;
+}
 
 .clear, .clearboth, .clearall {
-  clear: both; }
+  clear: both;
+}
 
 /* Float classes */
 .floatleft, .fleft, .floatl {
   float: left;
-  margin: 0 10px 5px 0; }
+  margin: 0 10px 5px 0;
+}
 
 .floatright, .fright, .floatr {
   float: right;
-  margin: 0 0 5px 10px; }
+  margin: 0 0 5px 10px;
+}
 
 /** "Skip to Main Content" link
 ---------------------------------
@@ -55,12 +64,14 @@
   top: auto;
   width: 1px;
   height: 1px;
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 #skip a:active, #skip a:focus {
   position: static;
   width: auto;
-  height: auto; }
+  height: auto;
+}
 
 /** Hidden class
 -----------------
@@ -73,15 +84,18 @@
   top: auto;
   width: 1px;
   height: 1px;
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 /* bug fix with views 2 edit links */
 div.view div.views-admin-links {
-  width: auto; }
+  width: auto;
+}
 
 /** Rollover edit links for blocks */
 div.block {
-  position: relative; }
+  position: relative;
+}
 
 div.block .edit {
   display: none;
@@ -99,16 +113,19 @@ div.block .edit {
   border-radius: 3px;
   -moz-box-shadow: 0 1px 3px #888;
   -webkit-box-shadow: 0 1px 3px #888;
-  box-shadow: 0 1px 3px #888; }
+  box-shadow: 0 1px 3px #888;
+}
 
 div.block .edit a {
   display: block;
   border: 0;
   padding: 0;
-  margin: 0; }
+  margin: 0;
+}
 
 div.block:hover .edit {
-  display: block; }
+  display: block;
+}
 
 /** Layout
 ---------------------------------
@@ -123,7 +140,8 @@ div.block:hover .edit {
 */
 #page {
   width: 960px;
-  margin: 0 auto; }
+  margin: 0 auto;
+}
 
 /** LAYOUT RULES
 ---------------------------------
@@ -133,20 +151,25 @@ div.block:hover .edit {
   float: left;
   width: 100%;
   margin-right: -100%;
-  padding: 0; }
+  padding: 0;
+}
 
 .sidebar {
-  float: left; }
+  float: left;
+}
 
 #sidebar-second {
-  float: right; }
+  float: right;
+}
 
 #footer {
-  float: none; }
+  float: none;
+}
 
 /* Layout Helpers */
 #header, #footer, .breadcrumb, .node {
-  clear: both; }
+  clear: both;
+}
 
 /** Sidebars width
 ---------------------------------
@@ -159,22 +182,26 @@ div.block:hover .edit {
 .two-sidebars .center,
 .sidebar-left .center {
   margin-left: 190px;
-  /* LEFT value */ }
+  /* LEFT value */
+}
 
 #sidebar-first {
   width: 190px;
   /* LEFT value */
   margin-right: -190px;
-  /* negative LEFT value */ }
+  /* negative LEFT value */
+}
 
 .two-sidebars .center,
 .sidebar-right .center {
   margin-right: 200px;
-  /* RIGHT value */ }
+  /* RIGHT value */
+}
 
 #sidebar-second {
   width: 200px;
-  /* RIGHT value */ }
+  /* RIGHT value */
+}
 
 /** Navigation styles
 ---------------------------------
@@ -183,20 +210,24 @@ div.block:hover .edit {
 *  remember to adapt the margin top of the content and sidebars.
 */
 #navigation {
-  float: left;
-  margin-left: 0;
-  margin-right: -100%;
+  margin: 0;
   padding: 0;
-  width: 100%; }
+  width: 100%;
+}
+#navigation ul.menu {
+  margin: 0;
+}
 
 .with-navigation #content,
 .with-navigation .sidebar {
   margin-top: 40px;
-  /* Navigation Height */ }
+  /* Navigation Height */
+}
 
 #navigation {
   height: 40px;
-  /* Navigation Height */ }
+  /* Navigation Height */
+}
 
 body {
   margin: 0;
@@ -205,58 +236,71 @@ body {
    * http://www.markboulton.co.uk/journal/comments/five-simple-steps-to-better-typography
    */
   font: 13px/1.5em "Helvetica Neue", Helvetica, Arial, sans-serif;
-  margin: 0; }
+  margin: 0;
+}
 
 /* Titles  */
 h1, h2, h3, h4, h5, h6 {
-  line-height: 1.3em; }
+  line-height: 1.3em;
+}
 
 h1 {
   font-size: 2.2em;
   font-weight: 300;
   padding: 0 0 0.5em;
-  margin: 0; }
+  margin: 0;
+}
 
 h2 {
   font-size: 1.6em;
   font-weight: 300;
-  margin-bottom: 0.75em; }
+  margin-bottom: 0.75em;
+}
 
 h3 {
   font-size: 1.3em;
-  margin-bottom: 1em; }
+  margin-bottom: 1em;
+}
 
 h4 {
   font-size: 1.2em;
-  margin-bottom: 0.8em; }
+  margin-bottom: 0.8em;
+}
 
 h5 {
   font-size: 1.1em;
   font-weight: 600;
-  margin-bottom: 0; }
+  margin-bottom: 0;
+}
 
 h6 {
   font-size: 1em;
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 /* Paragraph styles */
 p {
-  margin-top: 1em; }
+  margin-top: 1em;
+}
 
 /* List Styles  */
 ul, ol {
   margin-left: 0;
-  padding-left: 2em; }
+  padding-left: 2em;
+}
 
 /* Table Styles  */
 table {
-  width: 99%; }
+  width: 99%;
+}
 
 tr.even td, tr.odd td {
-  padding: 10px 5px; }
+  padding: 10px 5px;
+}
 
 tr.odd {
-  background-color: #fff; }
+  background-color: #fff;
+}
 
 /* List Styles */
 ul,
@@ -268,34 +312,42 @@ ol ol,
 ol ol ol,
 ul li,
 ol li {
-  list-style: none; }
+  list-style: none;
+}
 
 /* Abbreviation */
 abbr {
   border-bottom: 1px dotted #262626;
   cursor: help;
-  white-space: nowrap; }
+  white-space: nowrap;
+}
 
 /* UI improvments  */
 #edit-title {
-  font-size: 24px; }
+  font-size: 24px;
+}
 
 #system-themes-form img {
-  width: 100px; }
+  width: 100px;
+}
 
 .form-item .description {
   font-style: italic;
   line-height: 1.2em;
   font-size: 0.8em;
   margin-top: 5px;
-  color: #262626; }
+  color: #262626;
+}
 
 #edit-delete {
-  color: #c00; }
+  color: #c00;
+}
 
 /* Link styles */
 a {
   color: #336699;
-  text-decoration: none; }
-  a:hover, a:active {
-    text-decoration: underline; }
+  text-decoration: none;
+}
+a:hover, a:active {
+  text-decoration: underline;
+}

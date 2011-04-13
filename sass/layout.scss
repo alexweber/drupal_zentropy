@@ -210,20 +210,16 @@ div.block:hover .edit {
   *  remember to adapt the margin top of the content and sidebars.
   */
 
-  @if $sidebar == 0 {
-    #navigation {
-      margin-left: 0;
+  #navigation {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    
+    ul.menu {
+      margin: 0;
     }
-  } @else {
-    #navigation {
-      float: left;
-      margin-left: 0;
-      margin-right: -100%;
-      padding: 0;
-      width: 100%;
-    }  
   }
-  
+
   .with-navigation #content,
   .with-navigation .sidebar {
     margin-top: 40px;        /* Navigation Height */

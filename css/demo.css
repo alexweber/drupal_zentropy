@@ -6,6 +6,7 @@
  */
 
 #main { background: #ccc; }
+#navigation { background: #fcc; }
 #content { background: #eee; }
 #sidebar-first { background: #ccf; }
 #sidebar-second { background: #fcc; }
