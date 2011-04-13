@@ -213,20 +213,10 @@ div.block:hover .edit {
   margin: 0;
   padding: 0;
   width: 100%;
+  height: 40px;
 }
 #navigation ul.menu {
   margin: 0;
-}
-
-.with-navigation #content,
-.with-navigation .sidebar {
-  margin-top: 40px;
-  /* Navigation Height */
-}
-
-#navigation {
-  height: 40px;
-  /* Navigation Height */
 }
 
 body {
@@ -276,6 +266,10 @@ h5 {
 h6 {
   font-size: 1em;
   font-weight: bold;
+}
+
+.node-header h2.title {
+  margin-top: 0;
 }
 
 /* Paragraph styles */
