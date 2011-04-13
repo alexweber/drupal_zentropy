@@ -15,7 +15,7 @@ function zentropy_settings($saved_settings, $subtheme_defaults = array()) {
    * General Settings
    */
 
-  $form['zentropy_html'] = array(
+  $form['zentropy_general'] = array(
    '#type' => 'fieldset',
    '#title' => t('General'),
   );
@@ -23,13 +23,13 @@ function zentropy_settings($saved_settings, $subtheme_defaults = array()) {
   $form['zentropy_general']['zentropy_html5'] = array(
    '#type'  => 'checkbox',
    '#title' => t('Enable HTML5'),
-   '#default_value' => theme_get_setting('zentropy_html5'),
+   '#default_value' => $settings['zentropy_html5'],
   );
   
   $form['zentropy_general']['zentropy_feed_icons'] = array(
     '#type' => 'checkbox',
     '#title' => t('Display Feed Icons'),
-    '#default_value' => theme_get_setting('zentropy_feed_icons'),
+    '#default_value' => $settings['zentropy_feed_icons'],
   );
 
   /*
@@ -43,20 +43,20 @@ function zentropy_settings($saved_settings, $subtheme_defaults = array()) {
   $form['zentropy_breadcrumb']['zentropy_breadcrumb_hideonlyfront'] = array(
     '#type' => 'checkbox',
     '#title' => t('Hide the breadcrumb if the breadcrumb only contains the link to the front page.'),
-    '#default_value' => theme_get_setting('zentropy_breadcrumb_hideonlyfront'),
+    '#default_value' => $settings['zentropy_breadcrumb_hideonlyfront'],
   );
 
   $form['zentropy_breadcrumb']['zentropy_breadcrumb_separator'] = array(
     '#type' => 'textfield',
     '#title' => t('Breadcrumb separator'),
-    '#default_value' => theme_get_setting('zentropy_breadcrumb_separator'),
+    '#default_value' => $settings['zentropy_breadcrumb_separator'],
   );
 
   /*
    * Google Analytics settings
    */
   $roles_all = user_roles();
-  $roles_tracked = theme_get_setting('zentropy_ga_trackroles');
+  $roles_tracked = $settings['zentropy_ga_trackroles'];
 
   $form['zentropy_ga'] = array(
    '#type' => 'fieldset',
@@ -65,12 +65,12 @@ function zentropy_settings($saved_settings, $subtheme_defaults = array()) {
   $form['zentropy_ga']['zentropy_ga_enable'] = array(
    '#type'  => 'checkbox',
    '#title' => t('Enable Google Analytics'),
-   '#default_value' => theme_get_setting('zentropy_ga_enable'),
+   '#default_value' => $settings['zentropy_ga_enable'],
   );
   $form['zentropy_ga']['zentropy_ga_trackingcode'] = array(
    '#type'  => 'textfield',
    '#title' => t('Tracking code'),
-   '#default_value' => theme_get_setting('zentropy_ga_trackingcode'),
+   '#default_value' => $settings['zentropy_ga_trackingcode'],
   );
   $form['zentropy_ga']['zentropy_ga_trackroles'] = array(
     '#type' => 'checkboxes',

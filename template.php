@@ -19,12 +19,15 @@ function zentropy_preprocess_page(&$vars, $hook) {
   // Classes for body element. Allows advanced theming based on context
   // (home page, node of certain type, etc.)
   $body_classes = array($vars['body_classes']);
+
   if (user_access('administer blocks')) {
     $body_classes[] = 'admin';
   }
-  if (!empty($vars['primary_links']) or !empty($vars['secondary_links'])) {
+
+  if (!empty($vars['primary_links'])) {
     $body_classes[] = 'with-navigation';
   }
+
   if (!empty($vars['secondary_links'])) {
     $body_classes[] = 'with-secondary';
   }
@@ -329,7 +332,6 @@ function zentropy_menu_item($link, $has_children, $menu = '', $in_active_trail =
  * 	@return
  * 	  The converted string
  */
-
 function zentropy_id_safe($string) {
   // Replace with dashes anything that isn't A-Z, numbers, dashes, or underscores.
   $string = strtolower(preg_replace('/[^a-zA-Z0-9_-]+/', '-', $string));
