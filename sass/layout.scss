@@ -30,14 +30,7 @@
 
 /* clear classes */
 
-.clearleft { clear: left; }
-
-.clearright { clear: right; }
-
-.clear,
-.clearboth {
-  clear: both;
-}
+.clear { clear: both; }
 
 /* Float classes */
 
@@ -395,7 +388,8 @@ abbr {
 
 /* Link styles */
 
-a {
+a,
+li a.active {
   color: $link;
   text-decoration: none;
   

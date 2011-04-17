@@ -30,16 +30,7 @@
 
 /* End hide from IE-mac */
 /* clear classes */
-.clearleft {
-  clear: left;
-}
-
-.clearright {
-  clear: right;
-}
-
-.clear,
-.clearboth {
+.clear {
   clear: both;
 }
 
@@ -370,10 +361,13 @@ abbr {
 }
 
 /* Link styles */
-a {
+a,
+li a.active {
   color: #336699;
   text-decoration: none;
 }
-a:hover, a:active {
+a:hover, a:active,
+li a.active:hover,
+li a.active:active {
   text-decoration: underline;
 }
