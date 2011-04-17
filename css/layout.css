@@ -30,35 +30,26 @@
 
 /* End hide from IE-mac */
 /* clear classes */
-.clearleft,
-.clearl,
-.cleft {
+.clearleft {
   clear: left;
 }
 
-.clearright,
-.clearr,
-.cright {
+.clearright {
   clear: right;
 }
 
 .clear,
-.clearboth,
-.clearall {
+.clearboth {
   clear: both;
 }
 
 /* Float classes */
-.floatleft,
-.fleft,
-.floatl {
+.floatleft {
   float: left;
   margin: 0 10px 5px 0;
 }
 
-.floatright,
-.fright,
-.floatr {
+.floatright {
   float: right;
   margin: 0 0 5px 10px;
 }
@@ -224,7 +215,7 @@ div.block:hover .edit {
 
 #secondary-navigation {
   float: right;
-  margin: 0;
+  margin: 4px 4px 0 0;
   padding: 0;
   z-index: 4;
 }
@@ -313,10 +304,10 @@ h1#site-name {
   padding: 0;
 }
 
-/*.node-header h2.title,*/
-/*h3.block-title {*/
-/*  margin-top: 0;*/
-/*}*/
+.node-header h2.title {
+  margin-bottom: 0.5em;
+}
+
 /* Paragraph styles */
 /*p {*/
 /*  margin-top: 1em;*/
@@ -343,11 +334,8 @@ tr.odd {
 /* List Styles */
 ul,
 ul ul,
-ul ul ul,
-ul ul ul ul,
 ol,
 ol ol,
-ol ol ol,
 ul li,
 ol li {
   list-style: none;
