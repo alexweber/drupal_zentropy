@@ -31,34 +31,38 @@
 
 /* clear classes */
 
-.clearleft, .clearl, .cleft { clear: left; }
-.clearright, .clearr, .cright { clear: right; }
-.clear, .clearboth, .clearall{ clear: both; }
+.clearleft,
+.clearl,
+.cleft {
+  clear: left;
+}
+
+.clearright,
+.clearr,
+.cright {
+  clear: right;
+}
+
+.clear,
+.clearboth,
+.clearall{
+  clear: both;
+}
 
 /* Float classes */
 
-.floatleft, .fleft, .floatl { float: left; margin: 0 10px 5px 0; }
-.floatright, .fright, .floatr { float: right; margin: 0 0 5px 10px; }
-
-/** "Skip to Main Content" link
----------------------------------
-*  This link useful for both visually impaired people and those with mobility impairments
-*  who cannot use a mouse. http://www.webaim.org/techniques/css/invisiblecontent/
-*/
-
-#skip a, #skip a:hover, #skip a:visited {
-  position: absolute;
-  left:-10000px;
-  top:auto;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
+.floatleft,
+.fleft,
+.floatl {
+  float: left;
+  margin: 0 10px 5px 0;
 }
 
-#skip a:active, #skip a:focus {
-  position: static;
-  width: auto;
-  height: auto;
+.floatright,
+.fright,
+.floatr {
+  float: right; 
+  margin: 0 0 5px 10px;
 }
 
 /** Hidden class
@@ -78,7 +82,7 @@
 /* bug fix with views 2 edit links */
 
 div.view div.views-admin-links {
-	width:auto;
+	width: auto;
 }
 
 /** Rollover edit links for blocks */
@@ -95,15 +99,11 @@ div.block .edit {
   z-index: 40;
   padding: 3px 8px 0;
   font-size: 10px;
-  line-height:16px;
+  line-height: 16px;
   background-color: #fff;
-  border:1px solid #ccc;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  -moz-box-shadow: 0 1px 3px #888;
-  -webkit-box-shadow: 0 1px 3px #888;
-  box-shadow: 0 1px 3px #888;
+  border: 1px solid #ccc;
+  @include border-radius(3px);
+  @include box-shadow(#888, 0, 1px, 3px);
 }
 
 div.block .edit a {
@@ -143,6 +143,10 @@ div.block:hover .edit {
 *  do not change if you're not sure you know what you're doing
 */
 
+#content-inner {
+  padding: 1em;
+}
+
 @if $sidebar == 1 {
   #content {
     float: left;
@@ -150,11 +154,18 @@ div.block:hover .edit {
     margin-right: -100%;
     padding: 0;
   }
+  
   .sidebar {
     float: left;
   }
+  
   #sidebar-second {
     float: right;
+  }
+  
+  #sidebar-first-inner,
+  #sidebar-second-inner {
+    padding: 1em;
   }
 } @else {
   #content {
@@ -169,7 +180,10 @@ div.block:hover .edit {
 
 /* Layout Helpers */
 
-#header, #footer, #breadcrumb, .node {
+#header,
+#footer,
+#breadcrumb,
+.node {
   clear: both;
 }
 
@@ -293,7 +307,7 @@ h2 {
 
 h3 {
   font-size:1.3em; 
-  margin-bottom:1em;
+  margin-bottom:0.8em;
 }
 
 h4 {

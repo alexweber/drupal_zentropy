@@ -30,47 +30,37 @@
 
 /* End hide from IE-mac */
 /* clear classes */
-.clearleft, .clearl, .cleft {
+.clearleft,
+.clearl,
+.cleft {
   clear: left;
 }
 
-.clearright, .clearr, .cright {
+.clearright,
+.clearr,
+.cright {
   clear: right;
 }
 
-.clear, .clearboth, .clearall {
+.clear,
+.clearboth,
+.clearall {
   clear: both;
 }
 
 /* Float classes */
-.floatleft, .fleft, .floatl {
+.floatleft,
+.fleft,
+.floatl {
   float: left;
   margin: 0 10px 5px 0;
 }
 
-.floatright, .fright, .floatr {
+.floatright,
+.fright,
+.floatr {
   float: right;
   margin: 0 0 5px 10px;
-}
-
-/** "Skip to Main Content" link
----------------------------------
-*  This link useful for both visually impaired people and those with mobility impairments
-*  who cannot use a mouse. http://www.webaim.org/techniques/css/invisiblecontent/
-*/
-#skip a, #skip a:hover, #skip a:visited {
-  position: absolute;
-  left: -10000px;
-  top: auto;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-}
-
-#skip a:active, #skip a:focus {
-  position: static;
-  width: auto;
-  height: auto;
 }
 
 /** Hidden class
@@ -108,12 +98,12 @@ div.block .edit {
   line-height: 16px;
   background-color: #fff;
   border: 1px solid #ccc;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  -moz-box-shadow: 0 1px 3px #888;
-  -webkit-box-shadow: 0 1px 3px #888;
-  box-shadow: 0 1px 3px #888;
+  -moz-border-radius: 3px 3px 3px 3px;
+  -webkit-border-radius: 3px 3px 3px 3px;
+  border-radius: 3px 3px 3px 3px;
+  -moz-box-shadow: 0 1px 3px #888888;
+  -webkit-box-shadow: 0 1px 3px #888888;
+  box-shadow: 0 1px 3px #888888;
 }
 
 div.block .edit a {
@@ -147,6 +137,10 @@ div.block:hover .edit {
 ---------------------------------
 *  do not change if you're not sure you know what you're doing
 */
+#content-inner {
+  padding: 1em;
+}
+
 #content {
   float: left;
   width: 100%;
@@ -162,12 +156,20 @@ div.block:hover .edit {
   float: right;
 }
 
+#sidebar-first-inner,
+#sidebar-second-inner {
+  padding: 1em;
+}
+
 #footer {
   float: none;
 }
 
 /* Layout Helpers */
-#header, #footer, #breadcrumb, .node {
+#header,
+#footer,
+#breadcrumb,
+.node {
   clear: both;
 }
 
@@ -287,7 +289,7 @@ h2 {
 
 h3 {
   font-size: 1.3em;
-  margin-bottom: 1em;
+  margin-bottom: 0.8em;
 }
 
 h4 {
