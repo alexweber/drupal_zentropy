@@ -45,10 +45,5 @@ Drupal.behaviors.zentropy_jsinit = function() {
   // add ie sniffer class for IE 8 and below
   if ($.browser.msie && $.browser.version <= 8) {
     $('html').addClass('ie').addClass('ie' + $.browser.version.substr(0, 1));
-    
-    // add DD_belatedPNG if it is present & using IE 6
-    if ($.browser.version <= 6 && DD_belatedPNG) {
-      DD_belatedPNG.fix('img, .pngfix');
-    }
   }
 }
