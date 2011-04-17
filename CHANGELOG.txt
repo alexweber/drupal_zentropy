@@ -1,3 +1,10 @@
+6.3.1, 2011-04-16
+-----------------
+- Many small CSS tweaks
+  - Default padding for sidebars & content
+  - Secondary menu position
+  - Removed unused styles
+
 6.3.0, 2011-04-13
 -----------------
 - Major region refactor
