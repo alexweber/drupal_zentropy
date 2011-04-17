@@ -355,7 +355,7 @@ function zentropy_breadcrumb($breadcrumb) {
   $separator = theme_get_setting('zentropy_breadcrumb_separator');
 
   if ($condition) {
-    return '<div class="breadcrumb">' . implode(" {$separator} ", $breadcrumb) . '</div>';
+    return '<div id="breadcrumb">' . implode(" {$separator} ", $breadcrumb) . '</div>';
   }
 }
 

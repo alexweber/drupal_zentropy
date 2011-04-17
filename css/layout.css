@@ -167,12 +167,12 @@ div.block:hover .edit {
 }
 
 /* Layout Helpers */
-#header, #footer, .breadcrumb, .node {
+#header, #footer, #breadcrumb, .node {
   clear: both;
 }
 
-.breadcrumb {
-  padding-bottom: 0;
+#breadcrumb {
+  margin: 5px 0;
 }
 
 /** Sidebars width
@@ -217,7 +217,7 @@ div.block:hover .edit {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 40px;
+  height: 30px;
 }
 
 #secondary-navigation {
@@ -241,13 +241,16 @@ div.block:hover .edit {
 }
 
 #navigation ul.menu {
-  padding: 10px 1%;
+  padding: 5px 0.5%;
   height: 20px;
-  width: 98%;
+  width: 99%;
 }
 
 #navigation ul.menu li {
   margin: 0 0 0 0.5em;
+}
+#navigation ul.menu li.first {
+  margin-left: 0;
 }
 
 #secondary-navigation ul.menu li {
@@ -313,10 +316,9 @@ h1#site-name {
 /*  margin-top: 0;*/
 /*}*/
 /* Paragraph styles */
-p {
-  margin-top: 1em;
-}
-
+/*p {*/
+/*  margin-top: 1em;*/
+/*}*/
 /* List Styles  */
 ul, ol {
   margin-left: 0;

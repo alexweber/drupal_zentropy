@@ -169,12 +169,12 @@ div.block:hover .edit {
 
 /* Layout Helpers */
 
-#header, #footer, .breadcrumb, .node {
+#header, #footer, #breadcrumb, .node {
   clear: both;
 }
 
-.breadcrumb {
-  padding-bottom: 0;
+#breadcrumb {
+  margin: 5px 0;
 }
 
 @if $sidebar == 1 {
@@ -244,13 +244,17 @@ div.block:hover .edit {
   }
   
   #navigation ul.menu {
-    padding: 10px 1%;
-    height: $nav-height - 20px;
-    width: 98%;
+    padding: 5px 0.5%;
+    height: $nav-height - 10px;
+    width: 99%;
   }
   
   #navigation ul.menu li {
     margin: 0 0 0 0.5em;
+    
+    &.first {
+      margin-left: 0;
+    }
   }
   
   #secondary-navigation ul.menu li {
@@ -320,9 +324,9 @@ h1#site-name {
 
 /* Paragraph styles */
 
-p {
-  margin-top: 1em;
-}
+/*p {*/
+/*  margin-top: 1em;*/
+/*}*/
 
 /* List Styles  */
 
@@ -369,15 +373,15 @@ abbr {
 
 /* UI improvments  */
 
-#edit-title{
+#edit-title {
 	font-size: 24px;
 }
 
-#system-themes-form img{
+#system-themes-form img {
 	width:100px;
 }
 
-.form-item .description{
+.form-item .description {
 	font-style: italic;
 	line-height: 1.2em;
 	font-size: 0.8em;
