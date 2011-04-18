@@ -306,7 +306,7 @@ h1#site-name {
 /* List Styles  */
 ul, ol {
   margin-left: 0;
-  padding-left: 2em;
+  padding-left: 1em;
 }
 
 /* Table Styles  */
