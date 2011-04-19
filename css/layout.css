@@ -361,13 +361,10 @@ abbr {
 }
 
 /* Link styles */
-a,
-li a.active {
+a {
   color: #336699;
   text-decoration: none;
 }
-a:hover, a:active,
-li a.active:hover,
-li a.active:active {
+a:hover, a:active {
   text-decoration: underline;
 }
