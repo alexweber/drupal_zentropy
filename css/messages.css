@@ -2,7 +2,7 @@
  * @file message styles
  */
 div.messages {
-  margin: 0.4em auto;
+  margin: 0.6em auto 0.8em auto;
   padding: 1% 2% 1% 5%;
   width: 92%;
   background: url("../images/icons/info.png") center left no-repeat #527feb;
