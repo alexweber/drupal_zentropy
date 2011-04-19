@@ -43,16 +43,16 @@ textarea.form-textarea {
 }
 
 input.form-text {
+  width: 96%;
+}
+
+input.form-text {
   max-width: 400px;
 }
 
 body.section-node-add input.form-text,
 body.section-node-add textarea.form-textarea {
   max-width: 100%;
-}
-
-input.form-text {
-  width: auto;
 }
 
 div.teaser-checkbox {
