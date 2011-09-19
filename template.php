@@ -74,11 +74,11 @@ function zentropy_preprocess_page(&$vars, $hook) {
    * like this : page-node-22.tpl.php (if the node ID is 22)
    */
 
-  if ($vars['node']->type != "") {
+  if (isset($vars['node']) && $vars['node']->type != "") {
     $vars['template_files'][] = "page-type-" . $vars['node']->type;
   }
 
-  if ($vars['node']->nid != "") {
+  if (isset($vars['node']) && $vars['node']->nid != "") {
     $vars['template_files'][] = "page-node-" . $vars['node']->nid;
   }
 

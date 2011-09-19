@@ -3,12 +3,11 @@
 function zentropy_settings($saved_settings, $subtheme_defaults = array()) {
 
   // Get the default values from the .info file.
-  $defaults = zentropy_theme_get_default_settings('zentropy');
+  $defaults = zentropy_theme_get_default_settings();
 
   // Merge the saved variables and their default values.
   $settings = array_merge($defaults, $saved_settings);
 
-  //Forms using FAPI
   $form = array();
 
   /*
@@ -30,6 +29,13 @@ function zentropy_settings($saved_settings, $subtheme_defaults = array()) {
     '#type' => 'checkbox',
     '#title' => t('Display Feed Icons'),
     '#default_value' => $settings['zentropy_feed_icons'],
+  );
+  
+  $form['zentropy_general']['clear_registry'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Rebuild theme registry on every page.'),
+    '#description' => t('During theme development, it can be very useful to continuously <a href="!link">rebuild the theme registry</a>. WARNING: this is a huge performance penalty and must be turned off on production websites.', array('!link' => 'http://drupal.org/node/173880#theme-registry')),
+    '#default_value' => $settings['clear_registry'],
   );
 
   /*
@@ -99,20 +105,26 @@ function zentropy_settings($saved_settings, $subtheme_defaults = array()) {
     '#description' => t('Exclude the following roles from being tracked'),
     '#default_value' => !empty($roles_tracked) ? array_values((array) $roles_tracked) : array(),
   );
+  $form['zentropy_ga']['zentropy_ga_anonimize'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Anonimize IP'),
+    '#description' => t('Tells Google Analytics to anonymize the information sent by the tracker objects by removing the last octet of the IP address prior to its storage. Note that this will slightly reduce the accuracy of geographic reporting.'),
+    '#default_value' => $settings['zentropy_ga_anonimize']
+  );  
 
   // Return the form
   return $form;
 }
 
-function zentropy_theme_get_default_settings($theme) {
+function zentropy_theme_get_default_settings() {
   $themes = list_themes();
 
   // Get the default values from the .info file.
-  $defaults = !empty($themes[$theme]->info['settings']) ? $themes[$theme]->info['settings'] : array();
+  $defaults = !empty($themes['zentropy']->info['settings']) ? $themes['zentropy']->info['settings'] : array();
 
   if (!empty($defaults)) {
     // Get the theme settings saved in the database.
-    $settings = theme_get_settings($theme);
+    $settings = theme_get_settings('zentropy');
     // Don't save the toggle_node_info_ variables.
     if (module_exists('node')) {
       foreach (node_get_types() as $type => $name) {
@@ -121,7 +133,7 @@ function zentropy_theme_get_default_settings($theme) {
     }
     // Save default theme settings.
     variable_set(
-      str_replace('/', '_', 'theme_' . $theme . '_settings'),
+      str_replace('/', '_', 'theme_zentropy_settings'),
       array_merge($defaults, $settings)
     );
     // If the active theme has been loaded, force refresh of Drupal internals.

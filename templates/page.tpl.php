@@ -30,10 +30,16 @@
     <!-- ______________________ HEADER _______________________ -->
 
     <?php if ($zentropy_html5): ?>
-    <header id="header">
+    <header id="header" role="banner">
     <?php else: ?>
-    <div id="header">
+    <div id="header" role="banner">
     <?php endif; ?>
+
+      <?php if ($header_top): ?>
+        <div id="header-top-region">
+          <?php echo $header_top; ?>
+        </div>
+      <?php endif; ?>
 
       <?php if (!empty($secondary_links)): ?>
         <?php if ($zentropy_html5): ?>
